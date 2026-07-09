@@ -15,7 +15,6 @@ public sealed class GetOrderByIdQueryHandler : IRequestHandler<GetOrderByIdQuery
     public async Task<OrderDetailDto?> Handle(GetOrderByIdQuery request, CancellationToken ct)
     {
         var order = await _context.Orders
-            .Include(o => o.Items)
             .FirstOrDefaultAsync(o => o.Id == request.OrderId, ct);
 
         if (order is null) return null;
