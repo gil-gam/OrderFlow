@@ -1,4 +1,5 @@
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OrderFlow.Api.Requests;
 using OrderFlow.Application.Commands.CreateOrder;
@@ -9,6 +10,7 @@ namespace OrderFlow.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize] 
 [Produces("application/json")]
 public sealed class OrdersController : ControllerBase
 {

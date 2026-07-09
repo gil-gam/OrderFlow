@@ -42,9 +42,9 @@ public sealed class GetOrderByIdQueryHandlerTests
 
     private static Order CreateTestOrder()
     {
-        var address = Address.Create("123 Main St", "New York", "NY", "10001", "USA");
+        var address = new Address("123 Main St", "New York", "NY", "10001", "USA");
         var order = Order.Create(Guid.NewGuid(), address);
-        order.AddItem(Guid.NewGuid(), "Product X", 2, Money.Create(75m));
+        order.AddItem(Guid.NewGuid(), "Product X", 2, new Money(75m, "USD"));
         return order;
     }
 
@@ -66,9 +66,9 @@ public sealed class GetOrderByIdQueryHandlerTests
         result.TotalAmount.Should().Be(150m);
         result.Currency.Should().Be("USD");
         result.Items.Should().HaveCount(1);
-        result.Items[0].ProductName.Should().Be("Product X");
-        result.Items[0].Quantity.Should().Be(2);
-        result.Items[0].Subtotal.Should().Be(150m);
+        result.Items.First().ProductName.Should().Be("Product X");
+        result.Items.First().Quantity.Should().Be(2);
+        result.Items.First().Subtotal.Should().Be(150m);
     }
 
     [Fact]

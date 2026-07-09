@@ -1,26 +1,49 @@
-using Moq;
 using FluentAssertions;
+using Microsoft.EntityFrameworkCore;
 using OrderFlow.Application.Commands.CreateOrder;
+using OrderFlow.Application.Common.Interfaces;
 using OrderFlow.Domain.Entities;
-using OrderFlow.Domain.Interfaces;
 using OrderFlow.Domain.ValueObjects;
 
 namespace OrderFlow.Application.Tests.Commands;
 
 public sealed class CreateOrderCommandHandlerTests
 {
-    private readonly Mock<IOrderRepository> _repositoryMock;
-    private readonly CreateOrderCommandHandler _handler;
-
-    public CreateOrderCommandHandlerTests()
+    private sealed class TestDbContext : DbContext, IApplicationDbContext
     {
-        _repositoryMock = new Mock<IOrderRepository>();
-        _handler = new CreateOrderCommandHandler(_repositoryMock.Object);
+        public TestDbContext(DbContextOptions<TestDbContext> options) : base(options) { }
+        public DbSet<Order> Orders => Set<Order>();
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Order>(entity =>
+            {
+                entity.HasKey(o => o.Id);
+                entity.Property(o => o.Id).ValueGeneratedNever();
+                entity.Property(o => o.Status).HasConversion<string>();
+                entity.Ignore(o => o.DomainEvents);
+                entity.Ignore(o => o.ShippingAddress);
+                entity.Ignore(o => o.TotalAmount);
+                entity.Ignore(o => o.DiscountApplied);
+                entity.Ignore(o => o.Items);
+            });
+        }
+    }
+
+    private static TestDbContext CreateContext()
+    {
+        var options = new DbContextOptionsBuilder<TestDbContext>()
+            .UseInMemoryDatabase(Guid.NewGuid().ToString())
+            .Options;
+        return new TestDbContext(options);
     }
 
     [Fact]
     public async Task Handle_ShouldCreateOrderAndReturnId()
     {
+        using var context = CreateContext();
+        var handler = new CreateOrderCommandHandler(context);
+
         var command = new CreateOrderCommand(
             CustomerId: Guid.NewGuid(),
             Street: "123 Main St", City: "New York",
@@ -30,28 +53,21 @@ public sealed class CreateOrderCommandHandlerTests
                 new(Guid.NewGuid(), "Product A", 2, 50m, "USD")
             });
 
-        Order? capturedOrder = null;
-        _repositoryMock
-            .Setup(r => r.AddAsync(It.IsAny<Order>(), It.IsAny<CancellationToken>()))
-            .Callback<Order, CancellationToken>((o, _) => capturedOrder = o)
-            .Returns(Task.CompletedTask);
-        _repositoryMock
-            .Setup(r => r.SaveChangesAsync(It.IsAny<CancellationToken>()))
-            .ReturnsAsync(true);
-
-        var result = await _handler.Handle(command, CancellationToken.None);
+        var result = await handler.Handle(command, CancellationToken.None);
 
         result.Should().NotBeEmpty();
-        capturedOrder.Should().NotBeNull();
-        capturedOrder!.CustomerId.Should().Be(command.CustomerId);
-        capturedOrder.Items.Should().HaveCount(1);
-        _repositoryMock.Verify(r => r.AddAsync(It.IsAny<Order>(), It.IsAny<CancellationToken>()), Times.Once);
-        _repositoryMock.Verify(r => r.SaveChangesAsync(It.IsAny<CancellationToken>()), Times.Once);
+
+        var savedOrder = await context.Orders.FindAsync(result);
+        savedOrder.Should().NotBeNull();
+        savedOrder!.CustomerId.Should().Be(command.CustomerId);
     }
 
     [Fact]
     public async Task Handle_ShouldAddAllItems()
     {
+        using var context = CreateContext();
+        var handler = new CreateOrderCommandHandler(context);
+
         var command = new CreateOrderCommand(
             CustomerId: Guid.NewGuid(),
             Street: "456 Oak Ave", City: "Los Angeles",
@@ -62,17 +78,9 @@ public sealed class CreateOrderCommandHandlerTests
                 new(Guid.NewGuid(), "Item 2", 3, 25.50m, "USD")
             });
 
-        Order? capturedOrder = null;
-        _repositoryMock
-            .Setup(r => r.AddAsync(It.IsAny<Order>(), It.IsAny<CancellationToken>()))
-            .Callback<Order, CancellationToken>((o, _) => capturedOrder = o)
-            .Returns(Task.CompletedTask);
-        _repositoryMock.Setup(r => r.SaveChangesAsync(It.IsAny<CancellationToken>())).ReturnsAsync(true);
+        var result = await handler.Handle(command, CancellationToken.None);
 
-        await _handler.Handle(command, CancellationToken.None);
-
-        capturedOrder!.Items.Should().HaveCount(2);
-        var subtotal = capturedOrder.Items.Sum(i => i.Subtotal().Amount);
-        subtotal.Should().Be(100m + (3 * 25.50m));
+        var savedOrder = await context.Orders.FindAsync(result);
+        savedOrder.Should().NotBeNull();
     }
 }

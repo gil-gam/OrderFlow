@@ -38,7 +38,6 @@ builder.Services.AddSwaggerGen(options =>
         Description = "Order management system - Clean Architecture + CQRS"
     });
 
-    // Configure Swagger to accept JWT Bearer tokens
     options.AddSecurityDefinition("Bearer", new()
     {
         Name = "Authorization",
@@ -67,7 +66,11 @@ builder.Services.AddSwaggerGen(options =>
 
 // ── JWT Authentication ────────────────────────────────────
 var jwtKey = builder.Configuration["Jwt:Key"]
-    ?? throw new InvalidOperationException("Jwt:Key is not configured.");
+    ?? throw new InvalidOperationException(
+        "Jwt:Key is not configured. Set it via appsettings or Jwt__Key environment variable.");
+
+var jwtIssuer = builder.Configuration["Jwt:Issuer"] ?? "OrderFlow.Api";
+var jwtAudience = builder.Configuration["Jwt:Audience"] ?? "OrderFlow.Client";
 
 builder.Services.AddAuthentication(options =>
 {
@@ -81,9 +84,9 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey)),
         ValidateIssuer = true,
-        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+        ValidIssuer = jwtIssuer,
         ValidateAudience = true,
-        ValidAudience = builder.Configuration["Jwt:Audience"],
+        ValidAudience = jwtAudience,
         ValidateLifetime = true,
         ClockSkew = TimeSpan.Zero
     };
@@ -95,6 +98,22 @@ builder.Services.AddAuthorization();
 builder.Services.AddHealthChecks()
     .AddDbContextCheck<OrderFlowDbContext>("Database");
 
+// ── CORS ──────────────────────────────────────────────────
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        policy.WithOrigins(
+                "http://localhost:3000",   // React
+                "http://localhost:5173",   // Vite
+                "https://seuapp.com"       // Produção
+            )
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
+    });
+});
+
 // ── Application Layers ────────────────────────────────────
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
@@ -102,6 +121,7 @@ builder.Services.AddInfrastructure(builder.Configuration);
 var app = builder.Build();
 
 // ── Middleware Pipeline ───────────────────────────────────
+app.UseCors("AllowFrontend");
 app.UseSerilogRequestLogging();
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
@@ -124,9 +144,10 @@ app.MapHealthChecks("/health");
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<OrderFlowDbContext>();
-    await db.Database.EnsureCreatedAsync();
+    await db.Database.MigrateAsync();
 }
 
+// ── Application Start ─────────────────────────────────────
 try
 {
     Log.Information("Starting OrderFlow API");
@@ -142,7 +163,4 @@ finally
 }
 
 // ── Test Entry Point ──────────────────────────────────────
-// Required for WebApplicationFactory<Program> in integration tests.
-// Merges with the compiler-generated internal partial class Program
-// from top-level statements, elevating visibility to public.
 public partial class Program { }

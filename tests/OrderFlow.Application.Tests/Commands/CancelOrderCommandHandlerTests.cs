@@ -21,9 +21,9 @@ public sealed class CancelOrderCommandHandlerTests
     [Fact]
     public async Task Handle_ShouldCancelExistingOrder()
     {
-        var address = Address.Create("123 St", "City", "ST", "12345", "US");
+        var address = new Address("123 St", "City", "ST", "12345", "US");
         var order = Order.Create(Guid.NewGuid(), address);
-        order.AddItem(Guid.NewGuid(), "Test", 1, Money.Create(100));
+        order.AddItem(Guid.NewGuid(), "Test", 1, new Money(100, "USD"));
 
         _repositoryMock
             .Setup(r => r.GetByIdAsync(order.Id, It.IsAny<CancellationToken>()))

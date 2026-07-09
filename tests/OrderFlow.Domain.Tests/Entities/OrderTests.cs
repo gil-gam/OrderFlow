@@ -8,9 +8,9 @@ namespace OrderFlow.Domain.Tests.Entities;
 
 public sealed class OrderTests
 {
-    private static readonly Address DefaultAddress = Address.Create(
+    private static readonly Address DefaultAddress = new(
         "123 Main St", "New York", "NY", "10001", "USA");
-    private static readonly Money DefaultPrice = Money.Create(100);
+    private static readonly Money DefaultPrice = new(100, "USD");
     private static readonly Guid CustomerId = Guid.NewGuid();
     private static readonly Guid ProductId = Guid.NewGuid();
     private static readonly Guid ProductId2 = Guid.NewGuid();
@@ -43,7 +43,7 @@ public sealed class OrderTests
         order.AddItem(ProductId, "Test Product", 2, DefaultPrice);
 
         order.Items.Should().HaveCount(1);
-        order.Items[0].Quantity.Should().Be(2);
+        order.Items.First().Quantity.Should().Be(2);
         order.TotalAmount.Amount.Should().Be(200);
     }
 
@@ -55,7 +55,7 @@ public sealed class OrderTests
         order.AddItem(ProductId, "Test Product", 3, DefaultPrice);
 
         order.Items.Should().HaveCount(1);
-        order.Items[0].Quantity.Should().Be(5);
+        order.Items.First().Quantity.Should().Be(5);
         order.TotalAmount.Amount.Should().Be(500);
     }
 
@@ -126,7 +126,6 @@ public sealed class OrderTests
         var order = Order.Create(CustomerId, DefaultAddress);
         order.AddItem(ProductId, "Test", 1, DefaultPrice);
 
-        // Reflection para setar status como Shipped e testar a guarda
         var statusProperty = typeof(Order).GetProperty("Status");
         statusProperty!.SetValue(order, OrderStatus.Shipped);
 

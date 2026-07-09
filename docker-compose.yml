@@ -7,9 +7,9 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: OrderFlowDb
     ports:
-      - "5432:5432"
+      - "127.0.0.1:5432:5432"
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - orderflow_pgdata:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
@@ -28,7 +28,7 @@ services:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_URLS: http://+:8080
       ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Database=OrderFlowDb;Username=postgres;Password=postgres"
-      Jwt__Key: "OrderFlow-SuperSecret-Key-Minimum-32-Characters-Long!!"
+      Jwt__Key: ${JWT_KEY:-OrderFlow-SuperSecret-Key-Minimum-32-Characters-Long!!}
       Jwt__Issuer: "OrderFlow.Api"
       Jwt__Audience: "OrderFlow.Client"
     depends_on:
@@ -37,4 +37,4 @@ services:
     restart: unless-stopped
 
 volumes:
-  pgdata:
+  orderflow_pgdata:

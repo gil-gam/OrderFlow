@@ -4,10 +4,12 @@ namespace OrderFlow.Domain.Entities;
 
 public sealed class OrderItem
 {
+    public Guid Id { get; private set; }
+    public Guid OrderId { get; private set; }
     public Guid ProductId { get; private set; }
-    public string ProductName { get; private set; } = string.Empty;
+    public string ProductName { get; private set; } = null!;
     public int Quantity { get; private set; }
-    public Money UnitPrice { get; private set; }
+    public Money UnitPrice { get; private set; } = null!;
 
     private OrderItem() { } // EF Core
 
@@ -16,13 +18,19 @@ public sealed class OrderItem
         if (quantity <= 0)
             throw new ArgumentException("Quantity must be greater than zero.", nameof(quantity));
 
+        Id = Guid.NewGuid();
         ProductId = productId;
         ProductName = productName
             ?? throw new ArgumentNullException(nameof(productName));
         Quantity = quantity;
-        UnitPrice = unitPrice;
+        UnitPrice = unitPrice ?? throw new ArgumentNullException(nameof(unitPrice));
+    }
+
+    internal void SetOrderId(Guid orderId)
+    {
+        OrderId = orderId;
     }
 
     public Money Subtotal()
-        => Money.Create(Quantity * UnitPrice.Amount, UnitPrice.Currency);
+        => new Money(Quantity * UnitPrice.Amount, UnitPrice.Currency);
 }

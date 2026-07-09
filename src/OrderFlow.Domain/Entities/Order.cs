@@ -14,10 +14,10 @@ public sealed class Order
     public Guid CustomerId { get; private set; }
     public DateTime OrderDate { get; private set; }
     public OrderStatus Status { get; private set; }
-    public List<OrderItem> Items => _items;
+    public IReadOnlyCollection<OrderItem> Items => _items.AsReadOnly();
     public Address ShippingAddress { get; private set; } = null!;
-    public Money TotalAmount { get; private set; }
-    public Money DiscountApplied { get; private set; }
+    public Money TotalAmount { get; private set; } = null!;
+    public Money? DiscountApplied { get; private set; }
     public IReadOnlyList<INotification> DomainEvents => _domainEvents.AsReadOnly();
 
     private Order() { } // EF Core
@@ -32,8 +32,8 @@ public sealed class Order
             Status = OrderStatus.Pending,
             ShippingAddress = shippingAddress
                 ?? throw new ArgumentNullException(nameof(shippingAddress)),
-            TotalAmount = Money.Create(0),
-            DiscountApplied = Money.Create(0)
+            TotalAmount = new Money(0, "USD"),
+            DiscountApplied = null
         };
 
         order._domainEvents.Add(
@@ -82,7 +82,7 @@ public sealed class Order
 
         var subtotal = _items.Sum(i => i.Subtotal().Amount);
         var discountAmount = subtotal * (percentage / 100m);
-        DiscountApplied = Money.Create(discountAmount, TotalAmount.Currency);
+        DiscountApplied = new Money(discountAmount, TotalAmount.Currency);
         RecalculateTotal();
     }
 
@@ -112,7 +112,8 @@ public sealed class Order
     private void RecalculateTotal()
     {
         var subtotal = _items.Sum(i => i.Subtotal().Amount);
-        TotalAmount = Money.Create(
-            Math.Max(0, subtotal - DiscountApplied.Amount), TotalAmount.Currency);
+        var discount = DiscountApplied?.Amount ?? 0;
+        TotalAmount = new Money(
+            Math.Max(0, subtotal - discount), TotalAmount.Currency);
     }
 }

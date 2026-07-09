@@ -1,24 +1,22 @@
 namespace OrderFlow.Domain.ValueObjects;
 
-public readonly record struct Money : IEquatable<Money>
+public sealed record Money
 {
     public decimal Amount { get; init; }
-    public string Currency { get; init; }
+    public string Currency { get; init; } = null!;
 
-    private Money(decimal amount, string currency)
-    {
-        Amount = amount;
-        Currency = currency;
-    }
+    // EF Core constructor — required for materialization
+    private Money() { }
 
-    public static Money Create(decimal amount, string currency = "USD")
+    public Money(decimal amount, string currency)
     {
         if (amount < 0)
             throw new ArgumentException("Amount cannot be negative.", nameof(amount));
         if (string.IsNullOrWhiteSpace(currency))
             throw new ArgumentException("Currency is required.", nameof(currency));
 
-        return new Money(amount, currency.ToUpperInvariant());
+        Amount = amount;
+        Currency = currency.ToUpperInvariant();
     }
 
     public override string ToString() => $"{Amount:F2} {Currency}";

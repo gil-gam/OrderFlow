@@ -1,5 +1,7 @@
 D:\Repos\OrderFlow\src\OrderFlow.Api\bin\Debug\net10.0\appsettings.Development.json
 D:\Repos\OrderFlow\src\OrderFlow.Api\bin\Debug\net10.0\appsettings.json
+D:\Repos\OrderFlow\src\OrderFlow.Api\bin\Debug\net10.0\appsettings.Production.json
+D:\Repos\OrderFlow\src\OrderFlow.Api\bin\Debug\net10.0\appsettings.Staging.json
 D:\Repos\OrderFlow\src\OrderFlow.Api\bin\Debug\net10.0\OrderFlow.Api.staticwebassets.endpoints.json
 D:\Repos\OrderFlow\src\OrderFlow.Api\bin\Debug\net10.0\OrderFlow.Api.exe
 D:\Repos\OrderFlow\src\OrderFlow.Api\bin\Debug\net10.0\OrderFlow.Api.deps.json

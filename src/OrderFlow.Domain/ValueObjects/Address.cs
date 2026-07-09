@@ -2,35 +2,32 @@ namespace OrderFlow.Domain.ValueObjects;
 
 public sealed record Address
 {
-    public string Street { get; init; }
-    public string City { get; init; }
-    public string State { get; init; }
-    public string ZipCode { get; init; }
-    public string Country { get; init; }
+    public string Street { get; init; } = null!;
+    public string City { get; init; } = null!;
+    public string State { get; init; } = null!;
+    public string ZipCode { get; init; } = null!;
+    public string Country { get; init; } = null!;
 
-    private Address(string street, string city, string state, string zipCode, string country)
+    // EF Core constructor
+    private Address() { }
+
+    public Address(string street, string city, string state, string zipCode, string country)
     {
+        if (string.IsNullOrWhiteSpace(street))
+            throw new ArgumentException("Street is required.", nameof(street));
+        if (string.IsNullOrWhiteSpace(city))
+            throw new ArgumentException("City is required.", nameof(city));
+        if (string.IsNullOrWhiteSpace(state))
+            throw new ArgumentException("State is required.", nameof(state));
+        if (string.IsNullOrWhiteSpace(zipCode))
+            throw new ArgumentException("ZipCode is required.", nameof(zipCode));
+        if (string.IsNullOrWhiteSpace(country))
+            throw new ArgumentException("Country is required.", nameof(country));
+
         Street = street;
         City = city;
         State = state;
         ZipCode = zipCode;
         Country = country;
-    }
-
-    public static Address Create(
-        string street, string city, string state, string zipCode, string country)
-    {
-        if (string.IsNullOrWhiteSpace(street))
-            throw new ArgumentException("Street is required.");
-        if (string.IsNullOrWhiteSpace(city))
-            throw new ArgumentException("City is required.");
-        if (string.IsNullOrWhiteSpace(state))
-            throw new ArgumentException("State is required.");
-        if (string.IsNullOrWhiteSpace(zipCode))
-            throw new ArgumentException("ZipCode is required.");
-        if (string.IsNullOrWhiteSpace(country))
-            throw new ArgumentException("Country is required.");
-
-        return new Address(street, city, state, zipCode, country);
     }
 }

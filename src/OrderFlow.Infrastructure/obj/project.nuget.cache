@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "fr4n9U+zzIw=",
+  "dgSpecHash": "49sk2G78LuI=",
   "success": true,
   "projectFilePath": "D:\\Repos\\OrderFlow\\src\\OrderFlow.Infrastructure\\OrderFlow.Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -66,18 +66,5 @@
     "D:\\root\\.nuget\\packages\\system.security.permissions\\8.0.0\\system.security.permissions.8.0.0.nupkg.sha512",
     "D:\\root\\.nuget\\packages\\system.windows.extensions\\8.0.0\\system.windows.extensions.8.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "message": "O pacote 'Microsoft.Build.Tasks.Core' 17.7.2 tem uma alta vulnerabilidade de gravidade conhecida, https://github.com/advisories/GHSA-h4j7-5rxr-p4wc",
-      "projectPath": "D:\\Repos\\OrderFlow\\src\\OrderFlow.Infrastructure\\OrderFlow.Infrastructure.csproj",
-      "warningLevel": 1,
-      "filePath": "D:\\Repos\\OrderFlow\\src\\OrderFlow.Infrastructure\\OrderFlow.Infrastructure.csproj",
-      "libraryId": "Microsoft.Build.Tasks.Core",
-      "targetGraphs": [
-        "net10.0"
-      ]
-    }
-  ]
+  "logs": []
 }
