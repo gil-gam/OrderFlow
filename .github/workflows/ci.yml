@@ -41,7 +41,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Setup .NET ${{ env.DOTNET_VERSION }}
         uses: actions/setup-dotnet@v5
@@ -59,46 +59,22 @@ jobs:
           dotnet test tests/OrderFlow.Domain.Tests
           --no-restore
           --configuration Release
-          --logger "console;verbosity=normal"
+          --logger "console;verbosity=detailed"
 
       - name: Run unit tests - Application
         run: >-
           dotnet test tests/OrderFlow.Application.Tests
           --no-restore
           --configuration Release
-          --logger "console;verbosity=normal"
+          --logger "console;verbosity=detailed"
 
       - name: Run integration tests
         run: >-
           dotnet test tests/OrderFlow.IntegrationTests
           --no-restore
           --configuration Release
-          --logger "console;verbosity=normal"
+          --logger "console;verbosity=detailed"
         env:
           ConnectionStrings__DefaultConnection: >-
             Host=localhost;Port=5432;Database=OrderFlowDb;
             Username=postgres;Password=postgres
-
-      - name: Run tests with coverage (all projects)
-        if: always()
-        run: >-
-          dotnet test
-          --no-restore
-          --configuration Release
-          --collect:"XPlat Code Coverage"
-          --results-directory ./coverage
-          --settings .github/coverlet.runsettings
-        continue-on-error: true
-        env:
-          ConnectionStrings__DefaultConnection: >-
-            Host=localhost;Port=5432;Database=OrderFlowDb;
-            Username=postgres;Password=postgres
-
-      - name: Upload coverage reports
-        uses: actions/upload-artifact@v5
-        if: always()
-        with:
-          name: coverage-reports
-          path: coverage/
-          retention-days: 15
-          if-no-files-found: ignore
