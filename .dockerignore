@@ -1,0 +1,9 @@
+**/.vs
+**/.git
+**/bin
+**/obj
+**/packages
+**/*.user
+**/.dockerignore
+**/docker-compose*
+**/Dockerfile*
