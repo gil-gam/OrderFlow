@@ -67,6 +67,7 @@ jobs:
           dotnet test tests/OrderFlow.Domain.Tests
           --no-restore
           --configuration Release
+          --settings .runsettings
           --logger "console;verbosity=detailed"
 
       - name: Run unit tests - Application
@@ -74,6 +75,7 @@ jobs:
           dotnet test tests/OrderFlow.Application.Tests
           --no-restore
           --configuration Release
+          --settings .runsettings
           --logger "console;verbosity=detailed"
 
       - name: Run integration tests
@@ -81,6 +83,10 @@ jobs:
           dotnet test tests/OrderFlow.IntegrationTests
           --no-restore
           --configuration Release
+          --settings .runsettings
           --logger "console;verbosity=detailed"
         env:
           ConnectionStrings__DefaultConnection: Host=localhost;Port=5432;Database=OrderFlowDb;Username=postgres;Password=postgres
+          Jwt__Key: CI-Test-Key-Minimum-32-Characters-Long-For-GitHub!!
+          Jwt__Issuer: OrderFlow.CI
+          Jwt__Audience: OrderFlow.CI
