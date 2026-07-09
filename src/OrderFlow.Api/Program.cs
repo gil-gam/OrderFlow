@@ -140,3 +140,9 @@ finally
 {
     Log.CloseAndFlush();
 }
+
+// ── Test Entry Point ──────────────────────────────────────
+// Required for WebApplicationFactory<Program> in integration tests.
+// Merges with the compiler-generated internal partial class Program
+// from top-level statements, elevating visibility to public.
+public partial class Program { }
