@@ -18,6 +18,7 @@ env:
   DOTNET_VERSION: '10.0.x'
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
   DOTNET_CLI_TELEMETRY_OPTOUT: true
+  NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
 
 jobs:
   build-and-test:
@@ -47,6 +48,13 @@ jobs:
         uses: actions/setup-dotnet@v5
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Clear NuGet cache and fix permissions
+        run: |
+          rm -rf ~/.nuget/packages/mediatr.contracts || true
+          rm -rf ~/.nuget/packages/mediatr || true
+          mkdir -p ${{ env.NUGET_PACKAGES }}
+          chmod -R 755 ${{ env.NUGET_PACKAGES }} || true
 
       - name: Restore dependencies
         run: dotnet restore

@@ -1,0 +1,5 @@
+# Force LF for workflow files (will run on Linux)
+.github/workflows/* text eol=lf
+
+# Auto-detect text files
+* text=auto
