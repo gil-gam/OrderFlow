@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "WLMkjz1ZpBc=",
+  "dgSpecHash": "ColG16NeCu0=",
   "success": true,
   "projectFilePath": "D:\\Repos\\OrderFlow\\tests\\OrderFlow.Application.Tests\\OrderFlow.Application.Tests.csproj",
   "expectedPackageFiles": [
     "D:\\root\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
-    "D:\\root\\.nuget\\packages\\coverlet.collector\\10.0.1\\coverlet.collector.10.0.1.nupkg.sha512",
+    "D:\\root\\.nuget\\packages\\coverlet.collector\\6.0.4\\coverlet.collector.6.0.4.nupkg.sha512",
     "D:\\root\\.nuget\\packages\\fluentassertions\\8.10.0\\fluentassertions.8.10.0.nupkg.sha512",
     "D:\\root\\.nuget\\packages\\fluentvalidation\\11.11.0\\fluentvalidation.11.11.0.nupkg.sha512",
     "D:\\root\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.11.0\\fluentvalidation.dependencyinjectionextensions.11.11.0.nupkg.sha512",

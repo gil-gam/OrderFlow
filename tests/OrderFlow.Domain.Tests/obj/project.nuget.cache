@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "93JLPDuAIUQ=",
+  "dgSpecHash": "F+MgB+PRR9E=",
   "success": true,
   "projectFilePath": "D:\\Repos\\OrderFlow\\tests\\OrderFlow.Domain.Tests\\OrderFlow.Domain.Tests.csproj",
   "expectedPackageFiles": [
-    "D:\\root\\.nuget\\packages\\coverlet.collector\\10.0.1\\coverlet.collector.10.0.1.nupkg.sha512",
+    "D:\\root\\.nuget\\packages\\coverlet.collector\\6.0.4\\coverlet.collector.6.0.4.nupkg.sha512",
     "D:\\root\\.nuget\\packages\\fluentassertions\\8.10.0\\fluentassertions.8.10.0.nupkg.sha512",
     "D:\\root\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
     "D:\\root\\.nuget\\packages\\microsoft.codecoverage\\17.14.1\\microsoft.codecoverage.17.14.1.nupkg.sha512",

@@ -413,7 +413,7 @@
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[10.0.1, )"
+              "version": "[6.0.4, )"
             },
             "xunit": {
               "target": "Package",
