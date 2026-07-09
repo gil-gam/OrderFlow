@@ -147,6 +147,7 @@ D:\Repos\OrderFlow\src\OrderFlow.Api\obj\Debug\net10.0\OrderFlow.Api.AssemblyInf
 D:\Repos\OrderFlow\src\OrderFlow.Api\obj\Debug\net10.0\OrderFlow.Api.csproj.CoreCompileInputs.cache
 D:\Repos\OrderFlow\src\OrderFlow.Api\obj\Debug\net10.0\OrderFlow.Api.MvcApplicationPartsAssemblyInfo.cs
 D:\Repos\OrderFlow\src\OrderFlow.Api\obj\Debug\net10.0\OrderFlow.Api.MvcApplicationPartsAssemblyInfo.cache
+D:\Repos\OrderFlow\src\OrderFlow.Api\obj\Debug\net10.0\OrderFlow.Api.sourcelink.json
 D:\Repos\OrderFlow\src\OrderFlow.Api\obj\Debug\net10.0\rjimswa.dswa.cache.json
 D:\Repos\OrderFlow\src\OrderFlow.Api\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
 D:\Repos\OrderFlow\src\OrderFlow.Api\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json

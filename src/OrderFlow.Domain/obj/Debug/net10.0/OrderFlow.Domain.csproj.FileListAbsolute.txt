@@ -6,6 +6,7 @@ D:\Repos\OrderFlow\src\OrderFlow.Domain\obj\Debug\net10.0\OrderFlow.Domain.Gener
 D:\Repos\OrderFlow\src\OrderFlow.Domain\obj\Debug\net10.0\OrderFlow.Domain.AssemblyInfoInputs.cache
 D:\Repos\OrderFlow\src\OrderFlow.Domain\obj\Debug\net10.0\OrderFlow.Domain.AssemblyInfo.cs
 D:\Repos\OrderFlow\src\OrderFlow.Domain\obj\Debug\net10.0\OrderFlow.Domain.csproj.CoreCompileInputs.cache
+D:\Repos\OrderFlow\src\OrderFlow.Domain\obj\Debug\net10.0\OrderFlow.Domain.sourcelink.json
 D:\Repos\OrderFlow\src\OrderFlow.Domain\obj\Debug\net10.0\OrderFlow.Domain.dll
 D:\Repos\OrderFlow\src\OrderFlow.Domain\obj\Debug\net10.0\refint\OrderFlow.Domain.dll
 D:\Repos\OrderFlow\src\OrderFlow.Domain\obj\Debug\net10.0\OrderFlow.Domain.pdb

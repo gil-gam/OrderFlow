@@ -449,6 +449,7 @@ D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\obj\Debug\net10.0\OrderFlow.
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\obj\Debug\net10.0\OrderFlow.IntegrationTests.AssemblyInfoInputs.cache
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\obj\Debug\net10.0\OrderFlow.IntegrationTests.AssemblyInfo.cs
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\obj\Debug\net10.0\OrderFlow.IntegrationTests.csproj.CoreCompileInputs.cache
+D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\obj\Debug\net10.0\OrderFlow.IntegrationTests.sourcelink.json
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\obj\Debug\net10.0\OrderFlo.E1AB1D22.Up2Date
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\obj\Debug\net10.0\OrderFlow.IntegrationTests.dll
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\obj\Debug\net10.0\refint\OrderFlow.IntegrationTests.dll

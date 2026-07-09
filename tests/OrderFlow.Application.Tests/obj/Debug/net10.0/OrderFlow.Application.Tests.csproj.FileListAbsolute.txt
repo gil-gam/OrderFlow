@@ -112,6 +112,7 @@ D:\Repos\OrderFlow\tests\OrderFlow.Application.Tests\obj\Debug\net10.0\OrderFlow
 D:\Repos\OrderFlow\tests\OrderFlow.Application.Tests\obj\Debug\net10.0\OrderFlow.Application.Tests.AssemblyInfoInputs.cache
 D:\Repos\OrderFlow\tests\OrderFlow.Application.Tests\obj\Debug\net10.0\OrderFlow.Application.Tests.AssemblyInfo.cs
 D:\Repos\OrderFlow\tests\OrderFlow.Application.Tests\obj\Debug\net10.0\OrderFlow.Application.Tests.csproj.CoreCompileInputs.cache
+D:\Repos\OrderFlow\tests\OrderFlow.Application.Tests\obj\Debug\net10.0\OrderFlow.Application.Tests.sourcelink.json
 D:\Repos\OrderFlow\tests\OrderFlow.Application.Tests\obj\Debug\net10.0\OrderFlo.259F00A8.Up2Date
 D:\Repos\OrderFlow\tests\OrderFlow.Application.Tests\obj\Debug\net10.0\OrderFlow.Application.Tests.dll
 D:\Repos\OrderFlow\tests\OrderFlow.Application.Tests\obj\Debug\net10.0\refint\OrderFlow.Application.Tests.dll

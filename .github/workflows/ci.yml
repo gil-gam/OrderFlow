@@ -75,6 +75,4 @@ jobs:
           --configuration Release
           --logger "console;verbosity=detailed"
         env:
-          ConnectionStrings__DefaultConnection: >-
-            Host=localhost;Port=5432;Database=OrderFlowDb;
-            Username=postgres;Password=postgres
+          ConnectionStrings__DefaultConnection: Host=localhost;Port=5432;Database=OrderFlowDb;Username=postgres;Password=postgres

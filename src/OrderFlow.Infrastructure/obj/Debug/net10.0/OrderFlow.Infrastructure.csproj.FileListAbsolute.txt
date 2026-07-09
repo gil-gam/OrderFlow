@@ -11,6 +11,7 @@ D:\Repos\OrderFlow\src\OrderFlow.Infrastructure\obj\Debug\net10.0\OrderFlow.Infr
 D:\Repos\OrderFlow\src\OrderFlow.Infrastructure\obj\Debug\net10.0\OrderFlow.Infrastructure.AssemblyInfoInputs.cache
 D:\Repos\OrderFlow\src\OrderFlow.Infrastructure\obj\Debug\net10.0\OrderFlow.Infrastructure.AssemblyInfo.cs
 D:\Repos\OrderFlow\src\OrderFlow.Infrastructure\obj\Debug\net10.0\OrderFlow.Infrastructure.csproj.CoreCompileInputs.cache
+D:\Repos\OrderFlow\src\OrderFlow.Infrastructure\obj\Debug\net10.0\OrderFlow.Infrastructure.sourcelink.json
 D:\Repos\OrderFlow\src\OrderFlow.Infrastructure\obj\Debug\net10.0\OrderFlo.33AD7DA1.Up2Date
 D:\Repos\OrderFlow\src\OrderFlow.Infrastructure\obj\Debug\net10.0\OrderFlow.Infrastructure.dll
 D:\Repos\OrderFlow\src\OrderFlow.Infrastructure\obj\Debug\net10.0\refint\OrderFlow.Infrastructure.dll
