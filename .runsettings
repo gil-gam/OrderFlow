@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+  <DataCollectionRunSettings>
+    <DataCollectors>
+      <DataCollector friendlyName="XPlat Code Coverage">
+        <Configuration>
+          <Format>cobertura,opencover</Format>
+          <Exclude>
+            <ExcludePattern>[*Tests]*</ExcludePattern>
+            <ExcludePattern>[OrderFlow.Api]*</ExcludePattern>
+          </Exclude>
+          <ExcludeByAttribute>
+            <ExcludeByAttributeFilter>System.CodeDom.Compiler.GeneratedCodeAttribute</ExcludeByAttributeFilter>
+            <ExcludeByAttributeFilter>System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute</ExcludeByAttributeFilter>
+            <ExcludeByAttributeFilter>System.ObsoleteAttribute</ExcludeByAttributeFilter>
+            <ExcludeByAttributeFilter>System.Runtime.CompilerServices.CompilerGeneratedAttribute</ExcludeByAttributeFilter>
+          </ExcludeByAttribute>
+          <IncludeStaticMembers>true</IncludeStaticMembers>
+          <UseSourceLink>true</UseSourceLink>
+        </Configuration>
+      </DataCollector>
+    </DataCollectors>
+  </DataCollectionRunSettings>
+  <LoggerRunSettings>
+    <Loggers>
+      <Logger friendlyName="console" enabled="True" />
+    </Loggers>
+  </LoggerRunSettings>
+</RunSettings>
