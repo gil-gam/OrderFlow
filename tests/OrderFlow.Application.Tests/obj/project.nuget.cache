@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Kbzll9AzXFE=",
+  "dgSpecHash": "8yoUF1Z20/E=",
   "success": true,
   "projectFilePath": "D:\\Repos\\OrderFlow\\tests\\OrderFlow.Application.Tests\\OrderFlow.Application.Tests.csproj",
   "expectedPackageFiles": [
+    "D:\\root\\.nuget\\packages\\bcrypt.net-next\\4.2.0\\bcrypt.net-next.4.2.0.nupkg.sha512",
     "D:\\root\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "D:\\root\\.nuget\\packages\\coverlet.collector\\6.0.4\\coverlet.collector.6.0.4.nupkg.sha512",
     "D:\\root\\.nuget\\packages\\fluentassertions\\8.10.0\\fluentassertions.8.10.0.nupkg.sha512",

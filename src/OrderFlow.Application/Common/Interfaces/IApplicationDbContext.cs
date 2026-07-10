@@ -5,6 +5,7 @@ namespace OrderFlow.Application.Common.Interfaces;
 
 public interface IApplicationDbContext
 {
+    DbSet<User> Users { get; }
     DbSet<Order> Orders { get; }
-    Task<int> SaveChangesAsync(CancellationToken ct = default);
+    Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }

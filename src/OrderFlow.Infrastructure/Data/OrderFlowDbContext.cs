@@ -18,11 +18,15 @@ public sealed class OrderFlowDbContext : DbContext, IApplicationDbContext
     }
 
     public DbSet<Order> Orders => Set<Order>();
+    public DbSet<User> Users => Set<User>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(
             typeof(OrderFlowDbContext).Assembly);
+
+        modelBuilder.Entity<User>().ToTable("User");
+
         base.OnModelCreating(modelBuilder);
     }
 

@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "8OrOVnlibPg=",
+  "dgSpecHash": "HLhsZ2lND1o=",
   "success": true,
   "projectFilePath": "D:\\Repos\\OrderFlow\\tests\\OrderFlow.IntegrationTests\\OrderFlow.IntegrationTests.csproj",
   "expectedPackageFiles": [
+    "D:\\root\\.nuget\\packages\\bcrypt.net-next\\4.2.0\\bcrypt.net-next.4.2.0.nupkg.sha512",
     "D:\\root\\.nuget\\packages\\coverlet.collector\\6.0.4\\coverlet.collector.6.0.4.nupkg.sha512",
     "D:\\root\\.nuget\\packages\\fluentassertions\\8.2.0\\fluentassertions.8.2.0.nupkg.sha512",
     "D:\\root\\.nuget\\packages\\fluentvalidation\\11.11.0\\fluentvalidation.11.11.0.nupkg.sha512",

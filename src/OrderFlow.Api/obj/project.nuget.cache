@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "GcQ78GaV2Jk=",
+  "dgSpecHash": "3Sf4l4a/35M=",
   "success": true,
   "projectFilePath": "D:\\Repos\\OrderFlow\\src\\OrderFlow.Api\\OrderFlow.Api.csproj",
   "expectedPackageFiles": [
+    "D:\\root\\.nuget\\packages\\bcrypt.net-next\\4.2.0\\bcrypt.net-next.4.2.0.nupkg.sha512",
     "D:\\root\\.nuget\\packages\\fluentvalidation\\11.11.0\\fluentvalidation.11.11.0.nupkg.sha512",
     "D:\\root\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.11.0\\fluentvalidation.dependencyinjectionextensions.11.11.0.nupkg.sha512",
     "D:\\root\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Z29dsFb2Xkc=",
+  "dgSpecHash": "ZXrpQoLxgEY=",
   "success": true,
   "projectFilePath": "D:\\Repos\\OrderFlow\\src\\OrderFlow.Application\\OrderFlow.Application.csproj",
   "expectedPackageFiles": [
+    "D:\\root\\.nuget\\packages\\bcrypt.net-next\\4.2.0\\bcrypt.net-next.4.2.0.nupkg.sha512",
     "D:\\root\\.nuget\\packages\\fluentvalidation\\11.11.0\\fluentvalidation.11.11.0.nupkg.sha512",
     "D:\\root\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.11.0\\fluentvalidation.dependencyinjectionextensions.11.11.0.nupkg.sha512",
     "D:\\root\\.nuget\\packages\\mediatr\\13.0.0\\mediatr.13.0.0.nupkg.sha512",
