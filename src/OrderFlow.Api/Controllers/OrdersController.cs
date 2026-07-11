@@ -3,14 +3,18 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OrderFlow.Api.Requests;
 using OrderFlow.Application.Commands.CreateOrder;
+using OrderFlow.Application.Commands.DeleteOrder;
+using OrderFlow.Application.Commands.UpdateOrder;
 using OrderFlow.Application.DTOs;
 using OrderFlow.Application.Queries.GetOrderById;
+using OrderFlow.Application.Queries.GetOrdersList;
+
 
 namespace OrderFlow.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-[Authorize] 
+[Authorize]
 [Produces("application/json")]
 public sealed class OrdersController : ControllerBase
 {
@@ -33,7 +37,6 @@ public sealed class OrdersController : ControllerBase
         CancellationToken ct)
     {
         var command = new CreateOrderCommand(
-            request.CustomerId,
             request.Street,
             request.City,
             request.State,
@@ -71,5 +74,44 @@ public sealed class OrdersController : ControllerBase
             return NotFound(new { message = $"Order {id} not found." });
 
         return Ok(result);
+    }
+
+    [HttpGet]
+    [ProducesResponseType(typeof(PaginatedList<OrderListDto>), StatusCodes.Status200OK)]
+    public async Task<ActionResult<PaginatedList<OrderListDto>>> GetList(
+    [FromQuery] int pageIndex = 1,
+    [FromQuery] int pageSize = 10,
+    CancellationToken ct = default)
+    {
+        var query = new GetOrdersListQuery(pageIndex, pageSize);
+        var result = await _mediator.Send(query, ct);
+        return Ok(result);
+    }
+
+    [HttpPut("{id:guid}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult> Update(
+        Guid id,
+        [FromBody] UpdateOrderCommand command,
+        CancellationToken ct)
+    {
+        if (id != command.OrderId)
+            return BadRequest("Route ID does not match command OrderId.");
+
+        var success = await _mediator.Send(command, ct);
+        if (!success) return NotFound();
+        return NoContent();
+    }
+
+    [HttpDelete("{id:guid}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult> Delete(Guid id, CancellationToken ct)
+    {
+        var success = await _mediator.Send(new DeleteOrderCommand(id), ct);
+        if (!success) return NotFound();
+        return NoContent();
     }
 }

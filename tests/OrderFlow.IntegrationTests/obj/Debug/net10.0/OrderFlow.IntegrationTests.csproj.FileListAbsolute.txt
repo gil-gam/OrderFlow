@@ -324,6 +324,7 @@ D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\refs\Syste
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\refs\System.Xml.XPath.dll
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\refs\System.Xml.XPath.XDocument.dll
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\refs\WindowsBase.dll
+D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\BCrypt-Net-Next.dll
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\FluentAssertions.dll
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\FluentValidation.dll
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\FluentValidation.DependencyInjectionExtensions.dll

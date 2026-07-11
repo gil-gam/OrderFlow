@@ -13,3 +13,11 @@ public sealed record OrderItemDetailDto(
     string ProductName,
     int Quantity,
     decimal Subtotal);
+
+public sealed record CreateOrderItemDto(
+    Guid ProductId,
+    string ProductName,
+    int Quantity,
+    decimal UnitPrice,
+    string Currency
+);

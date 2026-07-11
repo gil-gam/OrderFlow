@@ -8,6 +8,7 @@ D:\Repos\OrderFlow\src\OrderFlow.Api\bin\Debug\net10.0\OrderFlow.Api.deps.json
 D:\Repos\OrderFlow\src\OrderFlow.Api\bin\Debug\net10.0\OrderFlow.Api.runtimeconfig.json
 D:\Repos\OrderFlow\src\OrderFlow.Api\bin\Debug\net10.0\OrderFlow.Api.dll
 D:\Repos\OrderFlow\src\OrderFlow.Api\bin\Debug\net10.0\OrderFlow.Api.pdb
+D:\Repos\OrderFlow\src\OrderFlow.Api\bin\Debug\net10.0\BCrypt-Net-Next.dll
 D:\Repos\OrderFlow\src\OrderFlow.Api\bin\Debug\net10.0\FluentValidation.dll
 D:\Repos\OrderFlow\src\OrderFlow.Api\bin\Debug\net10.0\FluentValidation.DependencyInjectionExtensions.dll
 D:\Repos\OrderFlow\src\OrderFlow.Api\bin\Debug\net10.0\Humanizer.dll
@@ -165,4 +166,3 @@ D:\Repos\OrderFlow\src\OrderFlow.Api\obj\Debug\net10.0\refint\OrderFlow.Api.dll
 D:\Repos\OrderFlow\src\OrderFlow.Api\obj\Debug\net10.0\OrderFlow.Api.pdb
 D:\Repos\OrderFlow\src\OrderFlow.Api\obj\Debug\net10.0\OrderFlow.Api.genruntimeconfig.cache
 D:\Repos\OrderFlow\src\OrderFlow.Api\obj\Debug\net10.0\ref\OrderFlow.Api.dll
-D:\Repos\OrderFlow\src\OrderFlow.Api\bin\Debug\net10.0\BCrypt-Net-Next.dll

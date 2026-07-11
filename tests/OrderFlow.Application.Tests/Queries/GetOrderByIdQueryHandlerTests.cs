@@ -14,6 +14,10 @@ public sealed class GetOrderByIdQueryHandlerTests
     {
         public TestDbContext(DbContextOptions<TestDbContext> options) : base(options) { }
         public DbSet<Order> Orders => Set<Order>();
+        public DbSet<User> Users => Set<User>();
+        public DbSet<Customer> Customers => Set<Customer>();
+        public DbSet<Category> Categories => Set<Category>();
+        public DbSet<Product> Products => Set<Product>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -28,6 +32,15 @@ public sealed class GetOrderByIdQueryHandlerTests
                 entity.Ignore(o => o.DiscountApplied);
                 entity.Ignore(o => o.Items);
                 entity.Ignore(o => o.CustomerId);
+            });
+
+            modelBuilder.Entity<Category>().HasKey(c => c.Id);
+            modelBuilder.Entity<Product>(entity =>
+            {
+                entity.HasKey(p => p.Id);
+                entity.Property(p => p.Id).ValueGeneratedNever();
+                entity.Property(p => p.CategoryId).IsRequired();
+                entity.OwnsOne(p => p.UnitPrice);
             });
         }
     }

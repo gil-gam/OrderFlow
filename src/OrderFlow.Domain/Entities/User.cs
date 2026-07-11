@@ -7,6 +7,7 @@ public sealed class User
     public string Email { get; private set; } = string.Empty;
     public string PasswordHash { get; private set; } = string.Empty;
     public DateTime CreatedAt { get; private set; }
+    public bool IsActive { get; private set; } = true;
 
     private User() { }
 
@@ -17,5 +18,8 @@ public sealed class User
         Email = email;
         PasswordHash = passwordHash;
         CreatedAt = DateTime.UtcNow;
+        IsActive = true;
     }
+
+    public void Deactivate() => IsActive = false;
 }

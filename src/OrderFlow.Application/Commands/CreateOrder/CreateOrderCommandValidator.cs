@@ -6,7 +6,6 @@ public sealed class CreateOrderCommandValidator : AbstractValidator<CreateOrderC
 {
     public CreateOrderCommandValidator()
     {
-        RuleFor(x => x.CustomerId).NotEmpty();
         RuleFor(x => x.Street).NotEmpty().MaximumLength(200);
         RuleFor(x => x.City).NotEmpty().MaximumLength(100);
         RuleFor(x => x.State).NotEmpty().MaximumLength(50);

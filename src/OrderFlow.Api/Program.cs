@@ -1,13 +1,16 @@
-using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.IdentityModel.Tokens;
 using OrderFlow.Api.Middleware;
 using OrderFlow.Application;
+using OrderFlow.Application.Commands.RegisterUser;
+using OrderFlow.Application.Common.Interfaces;
 using OrderFlow.Infrastructure;
 using OrderFlow.Infrastructure.Data;
+using OrderFlow.Infrastructure.Services;
 using Serilog;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -117,6 +120,10 @@ builder.Services.AddCors(options =>
 // ── Application Layers ────────────────────────────────────
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddMediatR(cfg =>
+    cfg.RegisterServicesFromAssembly(typeof(RegisterUserCommandHandler).Assembly));
 
 var app = builder.Build();
 

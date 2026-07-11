@@ -2,6 +2,7 @@ using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using OrderFlow.Application.Commands.CreateOrder;
 using OrderFlow.Application.Common.Interfaces;
+using OrderFlow.Application.DTOs;
 using OrderFlow.Domain.Entities;
 using OrderFlow.Domain.ValueObjects;
 
@@ -13,6 +14,10 @@ public sealed class CreateOrderCommandHandlerTests
     {
         public TestDbContext(DbContextOptions<TestDbContext> options) : base(options) { }
         public DbSet<Order> Orders => Set<Order>();
+        public DbSet<User> Users => Set<User>();
+        public DbSet<Customer> Customers => Set<Customer>();
+        public DbSet<Category> Categories => Set<Category>();
+        public DbSet<Product> Products => Set<Product>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -27,25 +32,48 @@ public sealed class CreateOrderCommandHandlerTests
                 entity.Ignore(o => o.DiscountApplied);
                 entity.Ignore(o => o.Items);
             });
+
+            modelBuilder.Entity<Customer>(entity =>
+            {
+                entity.HasKey(c => c.Id);
+                entity.Property(c => c.Id).ValueGeneratedNever();
+                entity.HasIndex(c => c.UserExternalId).IsUnique();
+            });
         }
     }
 
-    private static TestDbContext CreateContext()
+    private sealed class FakeCurrentUserService : ICurrentUserService
+    {
+        public Guid UserId { get; }
+
+        public FakeCurrentUserService(Guid userId) => UserId = userId;
+    }
+
+    private static (TestDbContext context, FakeCurrentUserService currentUser) CreateContext()
     {
         var options = new DbContextOptionsBuilder<TestDbContext>()
             .UseInMemoryDatabase(Guid.NewGuid().ToString())
             .Options;
-        return new TestDbContext(options);
+
+        var context = new TestDbContext(options);
+        var currentUser = new FakeCurrentUserService(Guid.NewGuid());
+
+        return (context, currentUser);
     }
 
     [Fact]
     public async Task Handle_ShouldCreateOrderAndReturnId()
     {
-        using var context = CreateContext();
-        var handler = new CreateOrderCommandHandler(context);
+        var (context, currentUser) = CreateContext();
+
+        // Seed a Customer linked to the fake user
+        var customer = new Customer(currentUser.UserId, "Test Customer", "test@email.com");
+        context.Customers.Add(customer);
+        await context.SaveChangesAsync();
+
+        var handler = new CreateOrderCommandHandler(context, currentUser);
 
         var command = new CreateOrderCommand(
-            CustomerId: Guid.NewGuid(),
             Street: "123 Main St", City: "New York",
             State: "NY", ZipCode: "10001", Country: "USA",
             Items: new List<CreateOrderItemDto>
@@ -59,17 +87,22 @@ public sealed class CreateOrderCommandHandlerTests
 
         var savedOrder = await context.Orders.FindAsync(result);
         savedOrder.Should().NotBeNull();
-        savedOrder!.CustomerId.Should().Be(command.CustomerId);
+        savedOrder!.CustomerId.Should().Be(customer.Id);
     }
 
     [Fact]
     public async Task Handle_ShouldAddAllItems()
     {
-        using var context = CreateContext();
-        var handler = new CreateOrderCommandHandler(context);
+        var (context, currentUser) = CreateContext();
+
+        // Seed a Customer linked to the fake user
+        var customer = new Customer(currentUser.UserId, "Test Customer", "test@email.com");
+        context.Customers.Add(customer);
+        await context.SaveChangesAsync();
+
+        var handler = new CreateOrderCommandHandler(context, currentUser);
 
         var command = new CreateOrderCommand(
-            CustomerId: Guid.NewGuid(),
             Street: "456 Oak Ave", City: "Los Angeles",
             State: "CA", ZipCode: "90001", Country: "USA",
             Items: new List<CreateOrderItemDto>
@@ -82,5 +115,25 @@ public sealed class CreateOrderCommandHandlerTests
 
         var savedOrder = await context.Orders.FindAsync(result);
         savedOrder.Should().NotBeNull();
+    }
+
+    [Fact]
+    public async Task Handle_NoCustomerProfile_ShouldThrowUnauthorized()
+    {
+        var (context, currentUser) = CreateContext();
+        // Nenhum Customer semeado → deve lançar UnauthorizedAccessException
+
+        var handler = new CreateOrderCommandHandler(context, currentUser);
+
+        var command = new CreateOrderCommand(
+            Street: "123 Main St", City: "New York",
+            State: "NY", ZipCode: "10001", Country: "USA",
+            Items: new List<CreateOrderItemDto>
+            {
+                new(Guid.NewGuid(), "Product A", 2, 50m, "USD")
+            });
+
+        await Assert.ThrowsAsync<UnauthorizedAccessException>(() =>
+            handler.Handle(command, CancellationToken.None));
     }
 }

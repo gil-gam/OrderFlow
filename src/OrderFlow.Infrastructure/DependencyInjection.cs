@@ -30,6 +30,9 @@ public static class DependencyInjection
             sp.GetRequiredService<OrderFlowDbContext>());
 
         services.AddScoped<IOrderRepository, OrderRepository>();
+        services.AddScoped<IProductRepository, ProductRepository>();
+        services.AddScoped<ICategoryRepository, CategoryRepository>();
+        services.AddScoped<ICustomerRepository, CustomerRepository>();
         services.AddScoped<ITokenService, TokenService>();
 
         return services;

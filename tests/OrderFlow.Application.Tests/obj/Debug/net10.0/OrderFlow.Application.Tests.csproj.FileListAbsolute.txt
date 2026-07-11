@@ -8,6 +8,7 @@ D:\Repos\OrderFlow\tests\OrderFlow.Application.Tests\bin\Debug\net10.0\OrderFlow
 D:\Repos\OrderFlow\tests\OrderFlow.Application.Tests\bin\Debug\net10.0\OrderFlow.Application.Tests.runtimeconfig.json
 D:\Repos\OrderFlow\tests\OrderFlow.Application.Tests\bin\Debug\net10.0\OrderFlow.Application.Tests.dll
 D:\Repos\OrderFlow\tests\OrderFlow.Application.Tests\bin\Debug\net10.0\OrderFlow.Application.Tests.pdb
+D:\Repos\OrderFlow\tests\OrderFlow.Application.Tests\bin\Debug\net10.0\BCrypt-Net-Next.dll
 D:\Repos\OrderFlow\tests\OrderFlow.Application.Tests\bin\Debug\net10.0\Castle.Core.dll
 D:\Repos\OrderFlow\tests\OrderFlow.Application.Tests\bin\Debug\net10.0\FluentAssertions.dll
 D:\Repos\OrderFlow\tests\OrderFlow.Application.Tests\bin\Debug\net10.0\FluentValidation.dll
@@ -34,6 +35,7 @@ D:\Repos\OrderFlow\tests\OrderFlow.Application.Tests\bin\Debug\net10.0\Microsoft
 D:\Repos\OrderFlow\tests\OrderFlow.Application.Tests\bin\Debug\net10.0\Microsoft.VisualStudio.TestPlatform.Common.dll
 D:\Repos\OrderFlow\tests\OrderFlow.Application.Tests\bin\Debug\net10.0\Moq.dll
 D:\Repos\OrderFlow\tests\OrderFlow.Application.Tests\bin\Debug\net10.0\Newtonsoft.Json.dll
+D:\Repos\OrderFlow\tests\OrderFlow.Application.Tests\bin\Debug\net10.0\Npgsql.dll
 D:\Repos\OrderFlow\tests\OrderFlow.Application.Tests\bin\Debug\net10.0\System.IdentityModel.Tokens.Jwt.dll
 D:\Repos\OrderFlow\tests\OrderFlow.Application.Tests\bin\Debug\net10.0\xunit.assert.dll
 D:\Repos\OrderFlow\tests\OrderFlow.Application.Tests\bin\Debug\net10.0\xunit.core.dll

@@ -1313,6 +1313,7 @@
           "MediatR": "13.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "10.0.0-preview.3.25172.1",
           "Microsoft.EntityFrameworkCore": "10.0.0-preview.3.25171.6",
+          "Npgsql": "9.0.3",
           "OrderFlow.Domain": "1.0.0"
         },
         "compile": {

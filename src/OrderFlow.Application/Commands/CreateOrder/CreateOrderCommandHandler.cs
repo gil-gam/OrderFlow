@@ -1,4 +1,5 @@
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using OrderFlow.Application.Common.Interfaces;
 using OrderFlow.Domain.Entities;
 using OrderFlow.Domain.ValueObjects;
@@ -9,14 +10,27 @@ public sealed class CreateOrderCommandHandler
     : IRequestHandler<CreateOrderCommand, Guid>
 {
     private readonly IApplicationDbContext _context;
+    private readonly ICurrentUserService _currentUser;
 
-    public CreateOrderCommandHandler(IApplicationDbContext context)
-        => _context = context;
+    public CreateOrderCommandHandler(
+        IApplicationDbContext context,
+        ICurrentUserService currentUser)
+    {
+        _context = context;
+        _currentUser = currentUser;
+    }
 
     public async Task<Guid> Handle(
         CreateOrderCommand request,
         CancellationToken cancellationToken)
     {
+        // ── Finds Customer by UserId from JWT token ──
+        var customer = await _context.Customers
+            .FirstOrDefaultAsync(
+                c => c.UserExternalId == _currentUser.UserId,
+                cancellationToken)
+            ?? throw new UnauthorizedAccessException("Customer profile not found.");
+
         var shippingAddress = new Address(
             request.Street,
             request.City,
@@ -24,9 +38,7 @@ public sealed class CreateOrderCommandHandler
             request.ZipCode,
             request.Country);
 
-        var order = Order.Create(request.CustomerId, shippingAddress);
-
-        decimal subtotal = 0;
+        var order = Order.Create(customer.Id, shippingAddress);
 
         foreach (var item in request.Items)
         {
@@ -35,8 +47,6 @@ public sealed class CreateOrderCommandHandler
                 item.ProductName,
                 item.Quantity,
                 new Money(item.UnitPrice, item.Currency ?? "USD"));
-
-            subtotal += item.UnitPrice * item.Quantity;
         }
 
         _context.Orders.Add(order);
