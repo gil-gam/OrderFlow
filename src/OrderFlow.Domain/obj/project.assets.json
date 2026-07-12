@@ -39,7 +39,7 @@
     ]
   },
   "packageFolders": {
-    "D:\\root\\.nuget\\packages": {},
+    "C:\\Users\\andre\\.nuget\\packages\\": {},
     "d:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
@@ -48,7 +48,7 @@
       "projectUniqueName": "D:\\Repos\\OrderFlow\\src\\OrderFlow.Domain\\OrderFlow.Domain.csproj",
       "projectName": "OrderFlow.Domain",
       "projectPath": "D:\\Repos\\OrderFlow\\src\\OrderFlow.Domain\\OrderFlow.Domain.csproj",
-      "packagesPath": "D:\\root\\.nuget\\packages",
+      "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
       "outputPath": "D:\\Repos\\OrderFlow\\src\\OrderFlow.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [

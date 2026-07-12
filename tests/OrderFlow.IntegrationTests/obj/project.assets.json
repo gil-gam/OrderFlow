@@ -4779,7 +4779,7 @@
     ]
   },
   "packageFolders": {
-    "D:\\root\\.nuget\\packages": {},
+    "C:\\Users\\andre\\.nuget\\packages\\": {},
     "d:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
@@ -4788,7 +4788,7 @@
       "projectUniqueName": "D:\\Repos\\OrderFlow\\tests\\OrderFlow.IntegrationTests\\OrderFlow.IntegrationTests.csproj",
       "projectName": "OrderFlow.IntegrationTests",
       "projectPath": "D:\\Repos\\OrderFlow\\tests\\OrderFlow.IntegrationTests\\OrderFlow.IntegrationTests.csproj",
-      "packagesPath": "D:\\root\\.nuget\\packages",
+      "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
       "outputPath": "D:\\Repos\\OrderFlow\\tests\\OrderFlow.IntegrationTests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [

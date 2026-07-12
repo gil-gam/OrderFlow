@@ -1,10 +1,12 @@
 <Solution>
   <Folder Name="/src/">
-    <Project Path="D:/Repos/OrderFlow/src/OrderFlow.Api/OrderFlow.Api.csproj" />
-    <Project Path="D:/Repos/OrderFlow/src/OrderFlow.Application/OrderFlow.Application.csproj" />
-    <Project Path="D:/Repos/OrderFlow/src/OrderFlow.Domain/OrderFlow.Domain.csproj" />
-    <Project Path="D:/Repos/OrderFlow/src/OrderFlow.Infrastructure/OrderFlow.Infrastructure.csproj" />
+    <Project Path="src/OrderFlow.Api/OrderFlow.Api.csproj" />
+    <Project Path="src/OrderFlow.Application/OrderFlow.Application.csproj" />
+    <Project Path="src/OrderFlow.Domain/OrderFlow.Domain.csproj" />
+    <Project Path="src/OrderFlow.Infrastructure/OrderFlow.Infrastructure.csproj" />
   </Folder>
-  <Project Path="D:/Repos/OrderFlow/tests/OrderFlow.IntegrationTests/OrderFlow.IntegrationTests.csproj" />
-  <Project Path="tests/OrderFlow.UnitTests/OrderFlow.UnitTests.csproj" />
+  <Folder Name="/tests/">
+    <Project Path="tests/OrderFlow.IntegrationTests/OrderFlow.IntegrationTests.csproj" />
+    <Project Path="tests/OrderFlow.UnitTests/OrderFlow.UnitTests.csproj" />
+  </Folder>
 </Solution>

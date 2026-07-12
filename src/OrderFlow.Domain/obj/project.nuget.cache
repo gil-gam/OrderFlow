@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "7Z1Jded7wYY=",
+  "dgSpecHash": "kuAm5A36SFs=",
   "success": true,
   "projectFilePath": "D:\\Repos\\OrderFlow\\src\\OrderFlow.Domain\\OrderFlow.Domain.csproj",
   "expectedPackageFiles": [
-    "D:\\root\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512"
+    "C:\\Users\\andre\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512"
   ],
   "logs": []
 }

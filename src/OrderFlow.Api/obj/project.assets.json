@@ -4322,7 +4322,7 @@
     ]
   },
   "packageFolders": {
-    "D:\\root\\.nuget\\packages": {},
+    "C:\\Users\\andre\\.nuget\\packages\\": {},
     "d:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
@@ -4331,7 +4331,7 @@
       "projectUniqueName": "D:\\Repos\\OrderFlow\\src\\OrderFlow.Api\\OrderFlow.Api.csproj",
       "projectName": "OrderFlow.Api",
       "projectPath": "D:\\Repos\\OrderFlow\\src\\OrderFlow.Api\\OrderFlow.Api.csproj",
-      "packagesPath": "D:\\root\\.nuget\\packages",
+      "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
       "outputPath": "D:\\Repos\\OrderFlow\\src\\OrderFlow.Api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [

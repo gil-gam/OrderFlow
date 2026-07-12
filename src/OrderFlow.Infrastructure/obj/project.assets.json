@@ -4132,7 +4132,7 @@
     ]
   },
   "packageFolders": {
-    "D:\\root\\.nuget\\packages": {},
+    "C:\\Users\\andre\\.nuget\\packages\\": {},
     "d:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
@@ -4141,7 +4141,7 @@
       "projectUniqueName": "D:\\Repos\\OrderFlow\\src\\OrderFlow.Infrastructure\\OrderFlow.Infrastructure.csproj",
       "projectName": "OrderFlow.Infrastructure",
       "projectPath": "D:\\Repos\\OrderFlow\\src\\OrderFlow.Infrastructure\\OrderFlow.Infrastructure.csproj",
-      "packagesPath": "D:\\root\\.nuget\\packages",
+      "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
       "outputPath": "D:\\Repos\\OrderFlow\\src\\OrderFlow.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [

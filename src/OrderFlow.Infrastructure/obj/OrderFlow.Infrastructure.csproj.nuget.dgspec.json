@@ -10,7 +10,7 @@
         "projectUniqueName": "D:\\Repos\\OrderFlow\\src\\OrderFlow.Application\\OrderFlow.Application.csproj",
         "projectName": "OrderFlow.Application",
         "projectPath": "D:\\Repos\\OrderFlow\\src\\OrderFlow.Application\\OrderFlow.Application.csproj",
-        "packagesPath": "D:\\root\\.nuget\\packages",
+        "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
         "outputPath": "D:\\Repos\\OrderFlow\\src\\OrderFlow.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
@@ -389,7 +389,7 @@
         "projectUniqueName": "D:\\Repos\\OrderFlow\\src\\OrderFlow.Domain\\OrderFlow.Domain.csproj",
         "projectName": "OrderFlow.Domain",
         "projectPath": "D:\\Repos\\OrderFlow\\src\\OrderFlow.Domain\\OrderFlow.Domain.csproj",
-        "packagesPath": "D:\\root\\.nuget\\packages",
+        "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
         "outputPath": "D:\\Repos\\OrderFlow\\src\\OrderFlow.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
@@ -740,7 +740,7 @@
         "projectUniqueName": "D:\\Repos\\OrderFlow\\src\\OrderFlow.Infrastructure\\OrderFlow.Infrastructure.csproj",
         "projectName": "OrderFlow.Infrastructure",
         "projectPath": "D:\\Repos\\OrderFlow\\src\\OrderFlow.Infrastructure\\OrderFlow.Infrastructure.csproj",
-        "packagesPath": "D:\\root\\.nuget\\packages",
+        "packagesPath": "C:\\Users\\andre\\.nuget\\packages\\",
         "outputPath": "D:\\Repos\\OrderFlow\\src\\OrderFlow.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
