@@ -3,38 +3,33 @@ services:
     image: postgres:16-alpine
     container_name: orderflow-db
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: OrderFlowDb
+      POSTGRES_DB: orderflow
+      POSTGRES_USER: orderflow
+      POSTGRES_PASSWORD: orderflow123
     ports:
-      - "127.0.0.1:5432:5432"
+      - "5432:5432"
     volumes:
-      - orderflow_pgdata:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: ["CMD-SHELL", "pg_isready -U orderflow"]
       interval: 5s
       timeout: 5s
-      retries: 10
-    restart: unless-stopped
+      retries: 5
+      start_period: 10s
 
   api:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: src/OrderFlow.Api/Dockerfile
     container_name: orderflow-api
     ports:
-      - "8080:8080"
+      - "7279:8080"
     environment:
-      ASPNETCORE_ENVIRONMENT: Development
-      ASPNETCORE_URLS: http://+:8080
-      ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Database=OrderFlowDb;Username=postgres;Password=postgres"
-      Jwt__Key: ${JWT_KEY:-OrderFlow-SuperSecret-Key-Minimum-32-Characters-Long!!}
-      Jwt__Issuer: "OrderFlow.Api"
-      Jwt__Audience: "OrderFlow.Client"
+      ASPNETCORE_ENVIRONMENT: Docker
+      ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Database=orderflow;Username=orderflow;Password=orderflow123;"
     depends_on:
       postgres:
         condition: service_healthy
-    restart: unless-stopped
 
 volumes:
-  orderflow_pgdata:
+  postgres_data:

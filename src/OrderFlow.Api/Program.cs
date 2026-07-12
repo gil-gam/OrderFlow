@@ -128,9 +128,9 @@ builder.Services.AddMediatR(cfg =>
 var app = builder.Build();
 
 // ── Middleware Pipeline ───────────────────────────────────
+app.UseExceptionMiddleware();
 app.UseCors("AllowFrontend");
 app.UseSerilogRequestLogging();
-app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseSwagger();
 app.UseSwaggerUI(options =>

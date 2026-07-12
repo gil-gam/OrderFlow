@@ -1,4 +1,6 @@
 ﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
+using FluentValidation;
 using OrderFlow.Application.Common.Interfaces;
 using OrderFlow.Application.DTOs;
 using OrderFlow.Domain.Entities;
@@ -14,6 +16,12 @@ public sealed class CreateProductCommandHandler : IRequestHandler<CreateProductC
 
     public async Task<ProductDto> Handle(CreateProductCommand request, CancellationToken ct)
     {
+        var categoryExists = await _context.Categories
+            .AnyAsync(c => c.Id == request.CategoryId, ct);
+
+        if (!categoryExists)
+            throw new ValidationException($"Category '{request.CategoryId}' not found.");
+
         var product = Product.Create(
             request.Name,
             request.Description,

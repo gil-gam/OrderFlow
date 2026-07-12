@@ -43,10 +43,10 @@ namespace OrderFlow.Infrastructure.Data.Migrations
                 column: "CategoryId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Product_Product_CategoryId",
+                name: "FK_Product_Category_CategoryId",
                 table: "Product",
                 column: "CategoryId",
-                principalTable: "Product",
+                principalTable: "Category",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Restrict);
         }
@@ -55,7 +55,7 @@ namespace OrderFlow.Infrastructure.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Product_Product_CategoryId",
+                name: "FK_Product_Category_CategoryId",
                 table: "Product");
 
             migrationBuilder.DropTable(

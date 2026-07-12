@@ -1672,6 +1672,12 @@
             "projectReferences": {
               "D:\\Repos\\OrderFlow\\src\\OrderFlow.Api\\OrderFlow.Api.csproj": {
                 "projectPath": "D:\\Repos\\OrderFlow\\src\\OrderFlow.Api\\OrderFlow.Api.csproj"
+              },
+              "D:\\Repos\\OrderFlow\\src\\OrderFlow.Application\\OrderFlow.Application.csproj": {
+                "projectPath": "D:\\Repos\\OrderFlow\\src\\OrderFlow.Application\\OrderFlow.Application.csproj"
+              },
+              "D:\\Repos\\OrderFlow\\src\\OrderFlow.Infrastructure\\OrderFlow.Infrastructure.csproj": {
+                "projectPath": "D:\\Repos\\OrderFlow\\src\\OrderFlow.Infrastructure\\OrderFlow.Infrastructure.csproj"
               }
             }
           }
@@ -1698,25 +1704,19 @@
           "dependencies": {
             "FluentAssertions": {
               "target": "Package",
-              "version": "[8.2.0, )"
+              "version": "[7.0.0, )"
             },
             "Microsoft.AspNetCore.Mvc.Testing": {
               "target": "Package",
-              "version": "[10.0.0-preview.3.25172.1, )"
-            },
-            "Microsoft.EntityFrameworkCore.InMemory": {
-              "target": "Package",
-              "version": "[10.0.0-preview.3.25171.6, )"
+              "version": "[10.0.9, )"
             },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[17.13.0, )"
             },
-            "coverlet.collector": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
+            "Testcontainers.PostgreSql": {
               "target": "Package",
-              "version": "[6.0.4, )"
+              "version": "[4.1.0, )"
             },
             "xunit": {
               "target": "Package",

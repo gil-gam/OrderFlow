@@ -1,0 +1,1 @@
+open CreateProductCommandHandler.cs to inspect usings and class content

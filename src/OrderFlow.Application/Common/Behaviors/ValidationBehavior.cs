@@ -4,7 +4,7 @@ using MediatR;
 namespace OrderFlow.Application.Common.Behaviors;
 
 public sealed class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
-    where TRequest : IRequest<TResponse>
+    where TRequest : IBaseRequest
 {
     private readonly IEnumerable<IValidator<TRequest>> _validators;
 
@@ -12,14 +12,19 @@ public sealed class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<
         => _validators = validators;
 
     public async Task<TResponse> Handle(
-        TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken ct)
+        TRequest request,
+        RequestHandlerDelegate<TResponse> next,
+        CancellationToken ct)
     {
         if (!_validators.Any())
             return await next(ct);
 
         var context = new ValidationContext<TRequest>(request);
-        var failures = _validators
-            .Select(v => v.Validate(context))
+
+        var validationResults = await Task.WhenAll(
+            _validators.Select(v => v.ValidateAsync(context, ct)));
+
+        var failures = validationResults
             .SelectMany(r => r.Errors)
             .Where(f => f is not null)
             .ToList();
