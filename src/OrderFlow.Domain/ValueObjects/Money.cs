@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace OrderFlow.Domain.ValueObjects;
 
 public sealed record Money
@@ -19,5 +21,6 @@ public sealed record Money
         Currency = currency.ToUpperInvariant();
     }
 
-    public override string ToString() => $"{Amount:F2} {Currency}";
+    public override string ToString() =>
+        $"{Amount.ToString("F2", CultureInfo.CurrentCulture)} {Currency}";
 }

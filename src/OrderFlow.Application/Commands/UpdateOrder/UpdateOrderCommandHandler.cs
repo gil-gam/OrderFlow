@@ -20,27 +20,19 @@ public sealed class UpdateOrderCommandHandler : IRequestHandler<UpdateOrderComma
 
         if (order is null) return false;
 
-        // Get current item IDs
-        var currentProductIds = order.Items.Select(i => i.ProductId).ToList();
-        var requestedProductIds = request.Items.Select(i => i.ProductId).ToList();
+        var requestedProductIds = request.Items.Select(i => i.ProductId).ToHashSet();
 
-        // Remove items not in the new list
-        foreach (var productId in currentProductIds)
+        // Remove items NOT in the request (DELETE only — no re-add for these)
+        foreach (var item in order.Items.ToList())
         {
-            if (!requestedProductIds.Contains(productId))
-                order.RemoveItem(productId);
+            if (!requestedProductIds.Contains(item.ProductId))
+                order.RemoveItem(item.ProductId);
         }
 
-        // Add or update items
+        // Update existing items in-place or add new ones (UPDATE/INSERT — no remove+recreate)
         foreach (var itemDto in request.Items)
         {
-            if (currentProductIds.Contains(itemDto.ProductId))
-            {
-                // Remove and re-add to update quantity/price
-                order.RemoveItem(itemDto.ProductId);
-            }
-
-            order.AddItem(
+            order.UpdateItem(
                 itemDto.ProductId,
                 itemDto.ProductName,
                 itemDto.Quantity,
@@ -51,4 +43,3 @@ public sealed class UpdateOrderCommandHandler : IRequestHandler<UpdateOrderComma
         return true;
     }
 }
-

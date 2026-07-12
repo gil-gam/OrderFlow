@@ -50,9 +50,25 @@ public sealed class Order
         var existing = _items.FirstOrDefault(i => i.ProductId == productId);
         if (existing is not null)
         {
-            _items.Remove(existing);
-            _items.Add(new OrderItem(
-                productId, productName, existing.Quantity + quantity, unitPrice));
+            existing.Update(productName, existing.Quantity + quantity, unitPrice);
+        }
+        else
+        {
+            _items.Add(new OrderItem(productId, productName, quantity, unitPrice));
+        }
+
+        RecalculateTotal();
+    }
+
+    public void UpdateItem(Guid productId, string productName, int quantity, Money unitPrice)
+    {
+        if (Status != OrderStatus.Pending)
+            throw new InvalidOperationException("Cannot update items in a non-pending order.");
+
+        var existing = _items.FirstOrDefault(i => i.ProductId == productId);
+        if (existing is not null)
+        {
+            existing.Update(productName, quantity, unitPrice);
         }
         else
         {

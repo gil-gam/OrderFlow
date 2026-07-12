@@ -31,6 +31,16 @@ public sealed class OrderItem
         OrderId = orderId;
     }
 
+    internal void Update(string productName, int quantity, Money unitPrice)
+    {
+        if (quantity <= 0)
+            throw new ArgumentException("Quantity must be greater than zero.", nameof(quantity));
+
+        ProductName = productName ?? throw new ArgumentNullException(nameof(productName));
+        Quantity = quantity;
+        UnitPrice = unitPrice ?? throw new ArgumentNullException(nameof(unitPrice));
+    }
+
     public Money Subtotal()
         => new Money(Quantity * UnitPrice.Amount, UnitPrice.Currency);
 }
