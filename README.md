@@ -16,18 +16,20 @@
 - [Architecture Diagram](#architecture-diagram)
 - [Quick Start](#quick-start)
 - [For New Developers](#for-new-developers)
+- [Implementation rules](#implementation-rules)
 - [Architecture Decisions](#architecture-decisions)
 - [Prerequisites](#prerequisites)
 - [Docker](#docker)
 - [Environment Variables](#environment-variables)
 - [API Endpoints](#api-endpoints)
 - [Testing](#testing)
+- [Tech Stack](#tech-stack)
 - [CI/CD](#cicd)
 - [Project Structure](#project-structure)
 
 ---
 
-## Architecture Diagram 📐
+## Architecture Diagram
 
 ```mermaid
 graph TB
@@ -88,7 +90,7 @@ graph TB
     Docker --> DB
  ```
 
-## Quick Start 🚀
+## Quick Start
 ```bash
 # 1. Clone
 git clone https://github.com/gilbertoandreatta/OrderFlow.git
@@ -109,7 +111,8 @@ http://localhost:5220/swagger
 ```
 
 
-## For New Developers 👨‍💻 
+## For New Developers
+
 How to implement a new feature
 The development flow follows Clean Architecture + CQRS. Here's the step-by-step to add a new feature:
 
@@ -156,7 +159,7 @@ IntegrationTests
 - Unit tests test **business rules**
 - Integration tests test **the full pipeline with a real database**
 
-## Architecture Decisions 🧠 
+## Architecture Decisions
 
 ### Why Clean Architecture?
 | Decision | Rationale |
@@ -200,12 +203,12 @@ IntegrationTests
 - **Vendor-neutral** — Export traces and metrics to Prometheus, Grafana, Datadog, New Relic, or any OpenTelemetry-compatible backend.
 - **Runtime metrics** — GC collections, thread pool stats, and CPU usage available at GET /metrics.
 
-## ✅ Prerequisites
+## Prerequisites
 - .NET 10 SDK
 - Docker Desktop
 - EF Core CLI (dotnet tool install --global dotnet-ef)
 
-## Docker 🐳 
+## Docker 
 ```bash
 # Build and run everything (API + PostgreSQL)
 docker compose up --build
@@ -221,7 +224,7 @@ docker compose down
 docker compose down -v
 ```
 
-## Environment Variables 🔐 
+## Environment Variables 
 
 | Variable | Description | Required | Default | 
 | ------------- | ------ | ------ | ------ |
@@ -248,7 +251,7 @@ set ConnectionStrings__DefaultConnection=Host=myhost;Port=5432;Database=mydb;...
 $env:ConnectionStrings__DefaultConnection = "Host=myhost;Port=5432;Database=mydb;..."
 ```
 
-## API Endpoints 📡
+## API Endpoints
 
 ### Auth
 | Method | Route | Description | Auth |
@@ -304,7 +307,7 @@ $env:ConnectionStrings__DefaultConnection = "Host=myhost;Port=5432;Database=mydb
 
 
 
-## Testing 🧪
+## Testing
 ```bash
 # Run all tests
 dotnet test
@@ -327,7 +330,8 @@ dotnet test --settings .runsettings
 - **Integration tests:** xUnit + Testcontainers + WebApplicationFactory — spin up a real PostgreSQL container, run the full API pipeline with JWT authentication
 
 
-## CI/CD 🔄
+## CI/CD
+
 ### **CI (Continuous Integration)**
 
 Triggered on **push** and **pull_request** to **main**. Pipeline:
@@ -347,7 +351,7 @@ Triggered automatically when CI succeeds on main. Pipeline:
 3. Image tags: latest, {version}, {major}.{minor}, {sha}
 
 
-## Tech Stack 🛠
+## Tech Stack
 | Category | Technology |
 | -------------- | ---------- |
 | Runtime | .NET 10 — ASP.NET Core Controllers  |
@@ -367,7 +371,7 @@ Triggered automatically when CI succeeds on main. Pipeline:
 | CI/CD    | GitHub Actions |
 
 
-## Project Structure 📁 
+## Project Structure 
 ```text
 
 
@@ -403,7 +407,7 @@ IntegrationTests/ # 18 integration tests
 Build.props
 ```
 
-## License 📄 
+## License
 This project is licensed under the MIT License — see the LICENSE file for details.
 
 by Gilberto Andreatta 
