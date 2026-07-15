@@ -29,6 +29,7 @@
 
 ## Architecture Diagram 📐
 
+```mermaid
 graph TB
     subgraph Clients["HTTP Clients"]
         Web["Web Apps<br/>(SPA, React, etc.)"]
@@ -85,6 +86,7 @@ graph TB
     GH --> Docker
     Docker --> API
     Docker --> DB
+ ```
 
 ## Quick Start 🚀
 ```bash
