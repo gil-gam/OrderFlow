@@ -13,6 +13,7 @@
 
 ## 📋 Table of Contents
 
+- [Architecture Diagram](#architecture-diagram)
 - [Quick Start](#quick-start)
 - [For New Developers](#for-new-developers)
 - [Architecture Decisions](#architecture-decisions)
@@ -26,7 +27,66 @@
 
 ---
 
-## 🚀 Quick Start
+## Architecture Diagram 📐
+
+graph TB
+    subgraph Clients["HTTP Clients"]
+        Web["Web Apps<br/>(SPA, React, etc.)"]
+        Tools["curl / Postman<br/>(API consumers)"]
+    end
+
+    subgraph API["API Layer (OrderFlow.Api)"]
+        Controllers["ASP.NET Core Controllers<br/>Categories, Customers, Products, Orders, Auth"]
+        Auth["JWT Bearer Authentication"]
+        Middleware["Middleware Pipeline<br/>Rate Limiting, OpenTelemetry, Serilog"]
+        Swagger["Swagger / OpenAPI"]
+        Versioning["API Versioning"]
+    end
+
+    subgraph Application["Application Layer (OrderFlow.Application)"]
+        CQRS["CQRS with MediatR<br/>Commands, Queries, Handlers"]
+        DTOs["DTOs and Mapping Profiles"]
+        Events["Domain Events<br/>e.g. OrderCreatedEvent"]
+        Pipeline["Pipeline Behaviors<br/>Logging, Validation, Transactions"]
+    end
+
+    subgraph Domain["Domain Layer (OrderFlow.Domain)"]
+        Entities["Entities<br/>Order, Customer, Product, Category, User"]
+        ValueObjects["Value Objects<br/>Money, Address"]
+        Interfaces["Repository Interfaces"]
+        Rules["Business Rules and Enums"]
+    end
+
+    subgraph Infrastructure["Infrastructure Layer (OrderFlow.Infrastructure)"]
+        EF["Entity Framework Core<br/>DbContext, Migrations"]
+        Repos["Repository Implementations"]
+        Config["Entity Configurations<br/>Fluent API"]
+        DI["Dependency Injection Registration"]
+    end
+
+    subgraph External["External Systems"]
+        DB[("PostgreSQL 16<br/>Database")]
+        Monitoring["Prometheus / Grafana<br/>Observability"]
+    end
+
+    subgraph DevOps["CI/CD & Testing"]
+        GH["GitHub Actions<br/>CI Pipeline"]
+        Docker["Docker / Docker Compose"]
+        Tests["xUnit + Testcontainers<br/>108 Unit + 18 Integration"]
+    end
+
+    Clients -->|HTTPS| API
+    API --> Application
+    Application --> Domain
+    Infrastructure --> Domain
+    Application --> Infrastructure
+    Infrastructure --> DB
+    API --> Monitoring
+    GH --> Docker
+    Docker --> API
+    Docker --> DB
+
+## Quick Start 🚀
 ```bash
 # 1. Clone
 git clone https://github.com/gilbertoandreatta/OrderFlow.git
@@ -36,16 +96,10 @@ cd OrderFlow
 docker compose up -d postgres
 
 # 3. Apply migrations
-dotnet ef database update --project src/OrderFlow.
-
-Infrastructure --startup-project src/OrderFlow.
-
-Api
+dotnet ef database update --project src/OrderFlow.Infrastructure --startup-project src/OrderFlow.Api
 
 # 4. Run the API
-dotnet run --project src/OrderFlow.
-
-Api
+dotnet run --project src/OrderFlow.Api
 
 # 5. Open Swagger
 
@@ -53,7 +107,7 @@ http://localhost:5220/swagger
 ```
 
 
-## 👨‍💻 For New Developers
+## For New Developers 👨‍💻 
 How to implement a new feature
 The development flow follows Clean Architecture + CQRS. Here's the step-by-step to add a new feature:
 
@@ -100,7 +154,7 @@ IntegrationTests
 - Unit tests test **business rules**
 - Integration tests test **the full pipeline with a real database**
 
-## 🧠 Architecture Decisions
+## Architecture Decisions 🧠 
 
 ### Why Clean Architecture?
 | Decision | Rationale |
@@ -149,7 +203,7 @@ IntegrationTests
 - Docker Desktop
 - EF Core CLI (dotnet tool install --global dotnet-ef)
 
-## 🐳 Docker
+## Docker 🐳 
 ```bash
 # Build and run everything (API + PostgreSQL)
 docker compose up --build
@@ -165,7 +219,7 @@ docker compose down
 docker compose down -v
 ```
 
-## 🔐 Environment Variables
+## Environment Variables 🔐 
 
 | Variable | Description | Required | Default | 
 | ------------- | ------ | ------ | ------ |
@@ -192,7 +246,7 @@ set ConnectionStrings__DefaultConnection=Host=myhost;Port=5432;Database=mydb;...
 $env:ConnectionStrings__DefaultConnection = "Host=myhost;Port=5432;Database=mydb;..."
 ```
 
-## 📡 API Endpoints
+## API Endpoints 📡
 
 ### Auth
 | Method | Route | Description | Auth |
@@ -211,7 +265,7 @@ $env:ConnectionStrings__DefaultConnection = "Host=myhost;Port=5432;Database=mydb
 | DELETE | /api/categories/{id}  |  Delete a category   |  ✅ |
 
 
-### Categories
+### Customers
 | Method | Route | Description | Auth |
 | -------------- | ---------- |  ---------- |  ------- |
 | POST   | /api/customers       |  Create a customer   |  ✅ |
@@ -248,7 +302,7 @@ $env:ConnectionStrings__DefaultConnection = "Host=myhost;Port=5432;Database=mydb
 
 
 
-## 🧪 Testing
+## Testing 🧪
 ```bash
 # Run all tests
 dotnet test
@@ -271,7 +325,7 @@ dotnet test --settings .runsettings
 - **Integration tests:** xUnit + Testcontainers + WebApplicationFactory — spin up a real PostgreSQL container, run the full API pipeline with JWT authentication
 
 
-## 🔄 CI/CD
+## CI/CD 🔄
 ### **CI (Continuous Integration)**
 
 Triggered on **push** and **pull_request** to **main**. Pipeline:
@@ -291,24 +345,7 @@ Triggered automatically when CI succeeds on main. Pipeline:
 3. Image tags: latest, {version}, {major}.{minor}, {sha}
 
 
-## 🛠 Tech Stack
-Category	Technology
-Runtime	.NET 10 — ASP.NET Core Controllers
-Language	C# 13
-ORM	Entity Framework Core 10 + Npgsql
-Database	PostgreSQL 16
-CQRS	MediatR
-Auth	JWT Bearer (Microsoft.AspNetCore.Authentication.JwtBearer)
-Logging	Serilog (Console + File sinks)
-Documentation	Swagger / Swashbuckle + Annotations
-Observability	OpenTelemetry (Traces + Metrics + Prometheus)
-API Versioning	Asp.Versioning.Mvc
-Rate Limiting	System.Threading.RateLimiting
-Mapping	Manual profiles (custom extension methods)
-Testing	xUnit + FluentAssertions + Testcontainers + WebApplicationFactory
-Container	Docker + Docker Compose
-CI/CD	GitHub Actions
-
+## Tech Stack 🛠
 | Category | Technology |
 | -------------- | ---------- |
 | Runtime | .NET 10 — ASP.NET Core Controllers  |
@@ -328,7 +365,7 @@ CI/CD	GitHub Actions
 | CI/CD    | GitHub Actions |
 
 
-## 📁 Project Structure
+## Project Structure 📁 
 ```text
 
 
@@ -364,7 +401,7 @@ IntegrationTests/ # 18 integration tests
 Build.props
 ```
 
-## 📄 License
+## License 📄 
 This project is licensed under the MIT License — see the LICENSE file for details.
 
 by Gilberto Andreatta 
