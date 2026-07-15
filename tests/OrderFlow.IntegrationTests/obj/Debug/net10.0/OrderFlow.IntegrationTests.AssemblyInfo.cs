@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OrderFlow.IntegrationTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e097cfe8e5dd8d028508458ea3324a1cd507b148")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e828685ab940ac8db9763f925871fb37ea5936d4")]
 [assembly: System.Reflection.AssemblyProductAttribute("OrderFlow.IntegrationTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OrderFlow.IntegrationTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

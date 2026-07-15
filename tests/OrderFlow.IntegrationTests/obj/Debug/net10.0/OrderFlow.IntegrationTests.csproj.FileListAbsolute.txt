@@ -1,6 +1,6 @@
+D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\.msCoverageSourceRootsMapping_OrderFlow.IntegrationTests
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\testhost.dll
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\xunit.abstractions.dll
-D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\.msCoverageSourceRootsMapping_OrderFlow.IntegrationTests
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\OrderFlow.Api.deps.json
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\OrderFlow.Api.runtimeconfig.json
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\BuildHost-net472\Microsoft.Build.Locator.dll
@@ -370,6 +370,10 @@ D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\refs\Syste
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\refs\System.Xml.XPath.dll
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\refs\System.Xml.XPath.XDocument.dll
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\refs\WindowsBase.dll
+D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\Asp.Versioning.Abstractions.dll
+D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\Asp.Versioning.Http.dll
+D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\Asp.Versioning.Mvc.dll
+D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\Asp.Versioning.Mvc.ApiExplorer.dll
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\BCrypt-Net-Next.dll
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\Docker.DotNet.dll
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\Docker.DotNet.X509.dll
@@ -405,6 +409,16 @@ D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\Microsoft.
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\Newtonsoft.Json.dll
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\Npgsql.dll
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\Npgsql.OpenTelemetry.dll
+D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\OpenTelemetry.dll
+D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\OpenTelemetry.Api.dll
+D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\OpenTelemetry.Api.ProviderBuilderExtensions.dll
+D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\OpenTelemetry.Exporter.OpenTelemetryProtocol.dll
+D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\OpenTelemetry.Exporter.Prometheus.AspNetCore.dll
+D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\OpenTelemetry.Extensions.Hosting.dll
+D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\OpenTelemetry.Instrumentation.AspNetCore.dll
+D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\OpenTelemetry.Instrumentation.Http.dll
+D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\OpenTelemetry.Instrumentation.Runtime.dll
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\Serilog.dll
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\Serilog.AspNetCore.dll
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\Serilog.Extensions.Hosting.dll
@@ -416,6 +430,7 @@ D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\Serilog.Si
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\Serilog.Sinks.File.dll
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\ICSharpCode.SharpZipLib.dll
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\Renci.SshNet.dll
+D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\Swashbuckle.AspNetCore.Annotations.dll
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -505,6 +520,7 @@ D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\OrderFlow.
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\OrderFlow.Domain.dll
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\OrderFlow.Infrastructure.dll
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\OrderFlow.Api.pdb
+D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\OrderFlow.Api.xml
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\OrderFlow.Application.pdb
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\OrderFlow.Infrastructure.pdb
 D:\Repos\OrderFlow\tests\OrderFlow.IntegrationTests\bin\Debug\net10.0\OrderFlow.Domain.pdb

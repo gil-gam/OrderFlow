@@ -1,7 +1,13 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi;
+using Npgsql;
+using OpenTelemetry.Metrics;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 using OrderFlow.Api.Middleware;
 using OrderFlow.Application;
 using OrderFlow.Application.Commands.RegisterUser;
@@ -11,6 +17,7 @@ using OrderFlow.Infrastructure.Data;
 using OrderFlow.Infrastructure.Services;
 using Serilog;
 using System.Text;
+using System.Threading.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,39 +39,92 @@ builder.Services.AddControllers()
     });
 
 builder.Services.AddEndpointsApiExplorer();
+
+// ── Swagger ───────────────────────────────────────────────
 builder.Services.AddSwaggerGen(options =>
 {
-    options.SwaggerDoc("v1", new()
+    options.SwaggerDoc("v1", new OpenApiInfo
     {
         Title = "OrderFlow API",
         Version = "v1",
-        Description = "Order management system - Clean Architecture + CQRS"
+        Description = "OrderFlow — Order management system with Clean Architecture + CQRS"
     });
 
-    options.AddSecurityDefinition("Bearer", new()
+    var xmlFile = $"{typeof(Program).Assembly.GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    if (File.Exists(xmlPath))
+        options.IncludeXmlComments(xmlPath);
+
+    options.EnableAnnotations();
+
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Name = "Authorization",
-        Type = Microsoft.OpenApi.Models.SecuritySchemeType.Http,
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.Http,
         Scheme = "bearer",
         BearerFormat = "JWT",
-        In = Microsoft.OpenApi.Models.ParameterLocation.Header,
         Description = "Enter your JWT token"
     });
 
-    options.AddSecurityRequirement(new()
+    // Document filter to add {version} parameter from Swagger UI
+    options.DocumentFilter<ReplaceVersionWithExactValueInPathFilter>();
+
+});
+
+// ── API Versioning ────────────────────────────────────────
+builder.Services.AddApiVersioning(options =>
+{
+    options.DefaultApiVersion = new Asp.Versioning.ApiVersion(1, 0);
+    options.AssumeDefaultVersionWhenUnspecified = true;
+    options.ReportApiVersions = true;
+    options.ApiVersionReader = Asp.Versioning.ApiVersionReader.Combine(
+        new Asp.Versioning.QueryStringApiVersionReader("api-version"),
+        new Asp.Versioning.HeaderApiVersionReader("X-Api-Version"));
+})
+.AddApiExplorer(options =>
+{
+    options.GroupNameFormat = "'v'VVV";
+    options.SubstituteApiVersionInUrl = true;
+});
+
+// ── OpenTelemetry ─────────────────────────────────────────
+builder.Services.AddOpenTelemetry()
+    .ConfigureResource(resource => resource
+        .AddService(serviceName: "OrderFlow.Api", serviceVersion: "1.0.0"))
+    .WithTracing(tracing => tracing
+        .AddAspNetCoreInstrumentation()
+        .AddHttpClientInstrumentation()
+        .AddNpgsql())
+    .WithMetrics(metrics => metrics
+        .AddAspNetCoreInstrumentation()
+        .AddHttpClientInstrumentation()
+        .AddRuntimeInstrumentation()
+        .AddPrometheusExporter());
+
+// ── Rate Limiting ─────────────────────────────────────────
+builder.Services.AddRateLimiter(options =>
+{
+    options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+
+    options.AddFixedWindowLimiter("Api", config =>
     {
-        {
-            new()
-            {
-                Reference = new()
-                {
-                    Type = Microsoft.OpenApi.Models.ReferenceType.SecurityScheme,
-                    Id = "Bearer"
-                }
-            },
-            Array.Empty<string>()
-        }
+        config.PermitLimit = 100;
+        config.Window = TimeSpan.FromMinutes(1);
+        config.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+        config.QueueLimit = 10;
     });
+
+    options.OnRejected = async (context, cancellationToken) =>
+    {
+        context.HttpContext.Response.ContentType = "application/json";
+        var response = new
+        {
+            error = "Too many requests. Please try again later.",
+            retryAfter = "1 minute"
+        };
+        await context.HttpContext.Response.WriteAsJsonAsync(response, cancellationToken);
+    };
 });
 
 // ── JWT Authentication ────────────────────────────────────
@@ -107,9 +167,9 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowFrontend", policy =>
     {
         policy.WithOrigins(
-                "http://localhost:3000",   // React
-                "http://localhost:5173",   // Vite
-                "https://seuapp.com"       // Produção
+                "http://localhost:3000",
+                "http://localhost:5173",
+                "https://seuapp.com"
             )
             .AllowAnyHeader()
             .AllowAnyMethod()
@@ -129,6 +189,7 @@ var app = builder.Build();
 
 // ── Middleware Pipeline ───────────────────────────────────
 app.UseExceptionMiddleware();
+app.UseRateLimiter();
 app.UseCors("AllowFrontend");
 app.UseSerilogRequestLogging();
 
@@ -146,6 +207,9 @@ app.MapControllers();
 
 // ── Health Check Endpoint ─────────────────────────────────
 app.MapHealthChecks("/health");
+
+// ── Prometheus Metrics Endpoint ───────────────────────────
+app.UseOpenTelemetryPrometheusScrapingEndpoint();
 
 // ── Database Bootstrap ────────────────────────────────────
 using (var scope = app.Services.CreateScope())
@@ -167,6 +231,21 @@ catch (Exception ex)
 finally
 {
     Log.CloseAndFlush();
+}
+
+// ── Swagger Versioning ──────────────────────────────
+public class ReplaceVersionWithExactValueInPathFilter : Swashbuckle.AspNetCore.SwaggerGen.IDocumentFilter
+{
+    public void Apply(Microsoft.OpenApi.OpenApiDocument swaggerDoc, Swashbuckle.AspNetCore.SwaggerGen.DocumentFilterContext context)
+    {
+        var paths = new Microsoft.OpenApi.OpenApiPaths();
+        foreach (var path in swaggerDoc.Paths)
+        {
+            var newKey = path.Key.Replace("{version}", "v1");
+            paths[newKey] = path.Value;
+        }
+        swaggerDoc.Paths = paths;
+    }
 }
 
 // ── Test Entry Point ──────────────────────────────────────

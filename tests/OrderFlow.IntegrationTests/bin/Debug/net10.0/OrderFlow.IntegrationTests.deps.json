@@ -362,6 +362,62 @@
           "OrderFlow.IntegrationTests.dll": {}
         }
       },
+      "Asp.Versioning.Abstractions/10.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "10.0.9"
+        },
+        "runtime": {
+          "lib/net10.0/Asp.Versioning.Abstractions.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.9607.28160"
+          }
+        },
+        "compile": {
+          "lib/net10.0/Asp.Versioning.Abstractions.dll": {}
+        }
+      },
+      "Asp.Versioning.Http/10.0.0": {
+        "dependencies": {
+          "Asp.Versioning.Abstractions": "10.0.0"
+        },
+        "runtime": {
+          "lib/net10.0/Asp.Versioning.Http.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.9607.28167"
+          }
+        },
+        "compile": {
+          "lib/net10.0/Asp.Versioning.Http.dll": {}
+        }
+      },
+      "Asp.Versioning.Mvc/10.0.0": {
+        "dependencies": {
+          "Asp.Versioning.Http": "10.0.0"
+        },
+        "runtime": {
+          "lib/net10.0/Asp.Versioning.Mvc.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.9607.28167"
+          }
+        },
+        "compile": {
+          "lib/net10.0/Asp.Versioning.Mvc.dll": {}
+        }
+      },
+      "Asp.Versioning.Mvc.ApiExplorer/10.0.0": {
+        "dependencies": {
+          "Asp.Versioning.Mvc": "10.0.0"
+        },
+        "runtime": {
+          "lib/net10.0/Asp.Versioning.Mvc.ApiExplorer.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.9607.28167"
+          }
+        },
+        "compile": {
+          "lib/net10.0/Asp.Versioning.Mvc.ApiExplorer.dll": {}
+        }
+      },
       "BCrypt.Net-Next/4.2.0": {
         "runtime": {
           "lib/net10.0/BCrypt-Net-Next.dll": {
@@ -678,15 +734,15 @@
           "Microsoft.TestPlatform.TestHost": "17.13.0"
         }
       },
-      "Microsoft.OpenApi/1.6.22": {
+      "Microsoft.OpenApi/2.7.5": {
         "runtime": {
-          "lib/netstandard2.0/Microsoft.OpenApi.dll": {
-            "assemblyVersion": "1.6.22.0",
-            "fileVersion": "1.6.22.0"
+          "lib/net8.0/Microsoft.OpenApi.dll": {
+            "assemblyVersion": "2.7.5.0",
+            "fileVersion": "2.7.5.0"
           }
         },
         "compile": {
-          "lib/netstandard2.0/Microsoft.OpenApi.dll": {}
+          "lib/net8.0/Microsoft.OpenApi.dll": {}
         }
       },
       "Microsoft.TestPlatform.ObjectModel/17.13.0": {
@@ -977,14 +1033,14 @@
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
       },
-      "Npgsql/10.0.0": {
+      "Npgsql/10.0.3": {
         "dependencies": {
           "Microsoft.Extensions.Logging.Abstractions": "10.0.9"
         },
         "runtime": {
           "lib/net10.0/Npgsql.dll": {
-            "assemblyVersion": "10.0.0.0",
-            "fileVersion": "10.0.0.0"
+            "assemblyVersion": "10.0.3.0",
+            "fileVersion": "10.0.3.0"
           }
         },
         "compile": {
@@ -995,7 +1051,7 @@
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "10.0.0",
           "Microsoft.EntityFrameworkCore.Relational": "10.0.0",
-          "Npgsql": "10.0.0"
+          "Npgsql": "10.0.3"
         },
         "runtime": {
           "lib/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll": {
@@ -1005,6 +1061,150 @@
         },
         "compile": {
           "lib/net10.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll": {}
+        }
+      },
+      "Npgsql.OpenTelemetry/10.0.3": {
+        "dependencies": {
+          "Npgsql": "10.0.3",
+          "OpenTelemetry.Api": "1.16.0"
+        },
+        "runtime": {
+          "lib/net8.0/Npgsql.OpenTelemetry.dll": {
+            "assemblyVersion": "10.0.3.0",
+            "fileVersion": "10.0.3.0"
+          }
+        },
+        "compile": {
+          "lib/net8.0/Npgsql.OpenTelemetry.dll": {}
+        }
+      },
+      "OpenTelemetry/1.16.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Diagnostics.Abstractions": "10.0.9",
+          "Microsoft.Extensions.Logging.Configuration": "10.0.9",
+          "OpenTelemetry.Api.ProviderBuilderExtensions": "1.16.0"
+        },
+        "runtime": {
+          "lib/net10.0/OpenTelemetry.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.16.0.2072"
+          }
+        },
+        "compile": {
+          "lib/net10.0/OpenTelemetry.dll": {}
+        }
+      },
+      "OpenTelemetry.Api/1.16.0": {
+        "runtime": {
+          "lib/net10.0/OpenTelemetry.Api.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.16.0.2072"
+          }
+        },
+        "compile": {
+          "lib/net10.0/OpenTelemetry.Api.dll": {}
+        }
+      },
+      "OpenTelemetry.Api.ProviderBuilderExtensions/1.16.0": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.9",
+          "OpenTelemetry.Api": "1.16.0"
+        },
+        "runtime": {
+          "lib/net10.0/OpenTelemetry.Api.ProviderBuilderExtensions.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.16.0.2072"
+          }
+        },
+        "compile": {
+          "lib/net10.0/OpenTelemetry.Api.ProviderBuilderExtensions.dll": {}
+        }
+      },
+      "OpenTelemetry.Exporter.OpenTelemetryProtocol/1.16.0": {
+        "dependencies": {
+          "OpenTelemetry": "1.16.0"
+        },
+        "runtime": {
+          "lib/net10.0/OpenTelemetry.Exporter.OpenTelemetryProtocol.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.16.0.2072"
+          }
+        },
+        "compile": {
+          "lib/net10.0/OpenTelemetry.Exporter.OpenTelemetryProtocol.dll": {}
+        }
+      },
+      "OpenTelemetry.Exporter.Prometheus.AspNetCore/1.16.0-beta.1": {
+        "dependencies": {
+          "OpenTelemetry": "1.16.0"
+        },
+        "runtime": {
+          "lib/net10.0/OpenTelemetry.Exporter.Prometheus.AspNetCore.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.16.0.2073"
+          }
+        },
+        "compile": {
+          "lib/net10.0/OpenTelemetry.Exporter.Prometheus.AspNetCore.dll": {}
+        }
+      },
+      "OpenTelemetry.Extensions.Hosting/1.16.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Hosting.Abstractions": "10.0.9",
+          "OpenTelemetry": "1.16.0"
+        },
+        "runtime": {
+          "lib/net10.0/OpenTelemetry.Extensions.Hosting.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.16.0.2072"
+          }
+        },
+        "compile": {
+          "lib/net10.0/OpenTelemetry.Extensions.Hosting.dll": {}
+        }
+      },
+      "OpenTelemetry.Instrumentation.AspNetCore/1.16.0": {
+        "dependencies": {
+          "OpenTelemetry.Api.ProviderBuilderExtensions": "1.16.0"
+        },
+        "runtime": {
+          "lib/net10.0/OpenTelemetry.Instrumentation.AspNetCore.dll": {
+            "assemblyVersion": "1.16.0.1140",
+            "fileVersion": "1.16.0.1140"
+          }
+        },
+        "compile": {
+          "lib/net10.0/OpenTelemetry.Instrumentation.AspNetCore.dll": {}
+        }
+      },
+      "OpenTelemetry.Instrumentation.Http/1.16.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Configuration": "10.0.9",
+          "Microsoft.Extensions.Options": "10.0.9",
+          "OpenTelemetry.Api.ProviderBuilderExtensions": "1.16.0"
+        },
+        "runtime": {
+          "lib/net10.0/OpenTelemetry.Instrumentation.Http.dll": {
+            "assemblyVersion": "1.16.0.1135",
+            "fileVersion": "1.16.0.1135"
+          }
+        },
+        "compile": {
+          "lib/net10.0/OpenTelemetry.Instrumentation.Http.dll": {}
+        }
+      },
+      "OpenTelemetry.Instrumentation.Runtime/1.16.0": {
+        "dependencies": {
+          "OpenTelemetry.Api": "1.16.0"
+        },
+        "runtime": {
+          "lib/net10.0/OpenTelemetry.Instrumentation.Runtime.dll": {
+            "assemblyVersion": "1.16.0.1175",
+            "fileVersion": "1.16.0.1175"
+          }
+        },
+        "compile": {
+          "lib/net10.0/OpenTelemetry.Instrumentation.Runtime.dll": {}
         }
       },
       "Serilog/4.3.0": {
@@ -1168,37 +1368,51 @@
       "Swashbuckle.AspNetCore/7.3.2": {
         "dependencies": {
           "Microsoft.Extensions.ApiDescription.Server": "6.0.5",
-          "Swashbuckle.AspNetCore.Swagger": "7.3.2",
-          "Swashbuckle.AspNetCore.SwaggerGen": "7.3.2",
+          "Swashbuckle.AspNetCore.Swagger": "10.2.3",
+          "Swashbuckle.AspNetCore.SwaggerGen": "10.2.3",
           "Swashbuckle.AspNetCore.SwaggerUI": "7.3.2"
         }
       },
-      "Swashbuckle.AspNetCore.Swagger/7.3.2": {
+      "Swashbuckle.AspNetCore.Annotations/10.2.3": {
         "dependencies": {
-          "Microsoft.OpenApi": "1.6.22"
+          "Swashbuckle.AspNetCore.SwaggerGen": "10.2.3"
         },
         "runtime": {
-          "lib/net9.0/Swashbuckle.AspNetCore.Swagger.dll": {
-            "assemblyVersion": "7.3.2.0",
-            "fileVersion": "7.3.2.1170"
+          "lib/net10.0/Swashbuckle.AspNetCore.Annotations.dll": {
+            "assemblyVersion": "10.2.3.0",
+            "fileVersion": "10.2.3.2721"
           }
         },
         "compile": {
-          "lib/net9.0/Swashbuckle.AspNetCore.Swagger.dll": {}
+          "lib/net10.0/Swashbuckle.AspNetCore.Annotations.dll": {}
         }
       },
-      "Swashbuckle.AspNetCore.SwaggerGen/7.3.2": {
+      "Swashbuckle.AspNetCore.Swagger/10.2.3": {
         "dependencies": {
-          "Swashbuckle.AspNetCore.Swagger": "7.3.2"
+          "Microsoft.OpenApi": "2.7.5"
         },
         "runtime": {
-          "lib/net9.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {
-            "assemblyVersion": "7.3.2.0",
-            "fileVersion": "7.3.2.1170"
+          "lib/net10.0/Swashbuckle.AspNetCore.Swagger.dll": {
+            "assemblyVersion": "10.2.3.0",
+            "fileVersion": "10.2.3.2721"
           }
         },
         "compile": {
-          "lib/net9.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {}
+          "lib/net10.0/Swashbuckle.AspNetCore.Swagger.dll": {}
+        }
+      },
+      "Swashbuckle.AspNetCore.SwaggerGen/10.2.3": {
+        "dependencies": {
+          "Swashbuckle.AspNetCore.Swagger": "10.2.3"
+        },
+        "runtime": {
+          "lib/net10.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {
+            "assemblyVersion": "10.2.3.0",
+            "fileVersion": "10.2.3.2721"
+          }
+        },
+        "compile": {
+          "lib/net10.0/Swashbuckle.AspNetCore.SwaggerGen.dll": {}
         }
       },
       "Swashbuckle.AspNetCore.SwaggerUI/7.3.2": {
@@ -1422,14 +1636,24 @@
       },
       "OrderFlow.Api/1.0.0": {
         "dependencies": {
+          "Asp.Versioning.Mvc": "10.0.0",
+          "Asp.Versioning.Mvc.ApiExplorer": "10.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "10.0.0",
           "Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore": "10.0.0",
+          "Npgsql.OpenTelemetry": "10.0.3",
+          "OpenTelemetry.Exporter.OpenTelemetryProtocol": "1.16.0",
+          "OpenTelemetry.Exporter.Prometheus.AspNetCore": "1.16.0-beta.1",
+          "OpenTelemetry.Extensions.Hosting": "1.16.0",
+          "OpenTelemetry.Instrumentation.AspNetCore": "1.16.0",
+          "OpenTelemetry.Instrumentation.Http": "1.16.0",
+          "OpenTelemetry.Instrumentation.Runtime": "1.16.0",
           "OrderFlow.Application": "1.0.0",
           "OrderFlow.Infrastructure": "1.0.0",
           "Serilog.AspNetCore": "10.0.0",
           "Serilog.Sinks.Console": "6.1.1",
           "Serilog.Sinks.File": "7.0.0",
-          "Swashbuckle.AspNetCore": "7.3.2"
+          "Swashbuckle.AspNetCore": "7.3.2",
+          "Swashbuckle.AspNetCore.Annotations": "10.2.3"
         },
         "runtime": {
           "OrderFlow.Api.dll": {
@@ -1449,7 +1673,7 @@
           "MediatR": "13.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "10.0.0",
           "Microsoft.EntityFrameworkCore": "10.0.0",
-          "Npgsql": "10.0.0",
+          "Npgsql": "10.0.3",
           "OrderFlow.Domain": "1.0.0"
         },
         "runtime": {
@@ -3612,6 +3836,34 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Asp.Versioning.Abstractions/10.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-cMRE5nvNMfBgfkb0XFWst/7UtyXCjoAXnV0L4Scx4P9fcf0idgrj1Z0c+3ylsy01K4cOib7dKhCBfpg5z3r0Kg==",
+      "path": "asp.versioning.abstractions/10.0.0",
+      "hashPath": "asp.versioning.abstractions.10.0.0.nupkg.sha512"
+    },
+    "Asp.Versioning.Http/10.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-xmNm9FM2d20NKy7i1osEQysf7pJ4iJjWnM6e8CoeIhUREqG8nugsfC82pGpmzlatjAJL5T52ieSpyW+GFdSsSQ==",
+      "path": "asp.versioning.http/10.0.0",
+      "hashPath": "asp.versioning.http.10.0.0.nupkg.sha512"
+    },
+    "Asp.Versioning.Mvc/10.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-W0wZ+0uZ0UK4KstjvEkNBZ0xxhBmxunwNg8582SVyyW7txQmSXibtm8fC4o82LaemPquYskms67bIbJOSrnlug==",
+      "path": "asp.versioning.mvc/10.0.0",
+      "hashPath": "asp.versioning.mvc.10.0.0.nupkg.sha512"
+    },
+    "Asp.Versioning.Mvc.ApiExplorer/10.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-H54UOpRoc4RmhQ4RA2lzDz43a/hAu/JN19Yyy/DNmH4XlRxhemfhifJyh9BaXNJOtGa2Dnu2xEeP4VSiTdUdAg==",
+      "path": "asp.versioning.mvc.apiexplorer/10.0.0",
+      "hashPath": "asp.versioning.mvc.apiexplorer.10.0.0.nupkg.sha512"
+    },
     "BCrypt.Net-Next/4.2.0": {
       "type": "package",
       "serviceable": true,
@@ -3780,12 +4032,12 @@
       "path": "microsoft.net.test.sdk/17.13.0",
       "hashPath": "microsoft.net.test.sdk.17.13.0.nupkg.sha512"
     },
-    "Microsoft.OpenApi/1.6.22": {
+    "Microsoft.OpenApi/2.7.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-aBvunmrdu/x+4CaA/UP1Jx4xWGwk4kymhoIRnn2Vp+zi5/KOPQJ9EkSXHRUr01WcGKtYl3Au7XfkPJbU1G2sjQ==",
-      "path": "microsoft.openapi/1.6.22",
-      "hashPath": "microsoft.openapi.1.6.22.nupkg.sha512"
+      "sha512": "sha512-0FA67RSnRM4tcBKqiqVu/HPdZ9+QOKbmeRjxRUGTCjPU4C0bmUhd97Dso7Yild5P7nOV6GxJ2xrK0Kv/O9xp0w==",
+      "path": "microsoft.openapi/2.7.5",
+      "hashPath": "microsoft.openapi.2.7.5.nupkg.sha512"
     },
     "Microsoft.TestPlatform.ObjectModel/17.13.0": {
       "type": "package",
@@ -3815,12 +4067,12 @@
       "path": "newtonsoft.json/13.0.1",
       "hashPath": "newtonsoft.json.13.0.1.nupkg.sha512"
     },
-    "Npgsql/10.0.0": {
+    "Npgsql/10.0.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-xZAYhPOU2rUIFpV48xsqhCx9vXs6Y+0jX2LCoSEfDFYMw9jtAOUk3iQsCnDLrFIv9NT3JGMihn7nnuZsPKqJmA==",
-      "path": "npgsql/10.0.0",
-      "hashPath": "npgsql.10.0.0.nupkg.sha512"
+      "sha512": "sha512-7nb5YzXuvWWJxB0J8DiyL3we+X4FOctZrt0fIBnucOIaIevFEEwGQVZKtiu9olXdlNAK1eNgqSral6r/jlhI4w==",
+      "path": "npgsql/10.0.3",
+      "hashPath": "npgsql.10.0.3.nupkg.sha512"
     },
     "Npgsql.EntityFrameworkCore.PostgreSQL/10.0.0": {
       "type": "package",
@@ -3828,6 +4080,76 @@
       "sha512": "sha512-E2+uSWxSB8LdsUVwPaqRWOcGOP92biry2JEwc0KJMdLJF+aZdczeIdEXVwEyv4nSVMQJH0o8tLhyAMiR6VF0lw==",
       "path": "npgsql.entityframeworkcore.postgresql/10.0.0",
       "hashPath": "npgsql.entityframeworkcore.postgresql.10.0.0.nupkg.sha512"
+    },
+    "Npgsql.OpenTelemetry/10.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ShsdG/FHxJ2VuWM6tebJL/mCWkcxymmvtENN59c85EsJdT4TStWwwtgZoBu/9UvC0qi1jpFZ6bOfl9ijiWD+vA==",
+      "path": "npgsql.opentelemetry/10.0.3",
+      "hashPath": "npgsql.opentelemetry.10.0.3.nupkg.sha512"
+    },
+    "OpenTelemetry/1.16.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-nE/Px3MUvQC8c0UG0DOP5OJE7vMtiMaPYi/6TkSS/o/O0s/oPq+8WaPYTVEPzb7lwu/QyLgknc+sFm2FjPXe2A==",
+      "path": "opentelemetry/1.16.0",
+      "hashPath": "opentelemetry.1.16.0.nupkg.sha512"
+    },
+    "OpenTelemetry.Api/1.16.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-WZP8Eb6vZTeNqeV+fjBitc7iefBoTHIhaWorqg/h/YiQBlcQJu0bICuTqKV0XRyjiE0eWs80yLlnUtHAFSkFWA==",
+      "path": "opentelemetry.api/1.16.0",
+      "hashPath": "opentelemetry.api.1.16.0.nupkg.sha512"
+    },
+    "OpenTelemetry.Api.ProviderBuilderExtensions/1.16.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-hZwaHAkXvUNn9+cS+vEvYBgIrIQOQRz2cIRUODZ5gxHsDsLeNCueLgZFkybopjE0jUhLut6lm5eL3LTqbW0hMg==",
+      "path": "opentelemetry.api.providerbuilderextensions/1.16.0",
+      "hashPath": "opentelemetry.api.providerbuilderextensions.1.16.0.nupkg.sha512"
+    },
+    "OpenTelemetry.Exporter.OpenTelemetryProtocol/1.16.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gzYLY8sVDY5FYtVlCYSzBYX53xslRlvBLxwFYOdNIhc76SgKdFYUoDQXOeQI3WPBCrZp51QNcP6fZHh1+HtpIQ==",
+      "path": "opentelemetry.exporter.opentelemetryprotocol/1.16.0",
+      "hashPath": "opentelemetry.exporter.opentelemetryprotocol.1.16.0.nupkg.sha512"
+    },
+    "OpenTelemetry.Exporter.Prometheus.AspNetCore/1.16.0-beta.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Vsmn9N5ID2Ic1VBaXS1PdXrQEL1Ws9RQKBP3SzgIxXITzLtyH+1W4BmyAg6ssmDRPCCOa723u8LFE5xqngsZGg==",
+      "path": "opentelemetry.exporter.prometheus.aspnetcore/1.16.0-beta.1",
+      "hashPath": "opentelemetry.exporter.prometheus.aspnetcore.1.16.0-beta.1.nupkg.sha512"
+    },
+    "OpenTelemetry.Extensions.Hosting/1.16.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/YfrO5MRaA156vhNanYGPX2JjOwKUrA0+Jf7ltT2eD3VkfHqXcEJY5Oxt/nWH8lqBOTc1nJpn2soBtD5Cml8Dg==",
+      "path": "opentelemetry.extensions.hosting/1.16.0",
+      "hashPath": "opentelemetry.extensions.hosting.1.16.0.nupkg.sha512"
+    },
+    "OpenTelemetry.Instrumentation.AspNetCore/1.16.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vSC5EsmBVNcqXMh9BGkkq8zkoUjrg8ghBDb9zbKR8Bqjd05utjVgVft+fqsqQVsvlV5olGj1pBliHBngcIGSIg==",
+      "path": "opentelemetry.instrumentation.aspnetcore/1.16.0",
+      "hashPath": "opentelemetry.instrumentation.aspnetcore.1.16.0.nupkg.sha512"
+    },
+    "OpenTelemetry.Instrumentation.Http/1.16.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-+Sz3lfvMXwWE8s/sMruHCDlO/+cArFVc6oBg1tCb70BKlL9FCC7uK4Ar2/VP9Hhwvs+UwaW1vGzE/uiByVHXiA==",
+      "path": "opentelemetry.instrumentation.http/1.16.0",
+      "hashPath": "opentelemetry.instrumentation.http.1.16.0.nupkg.sha512"
+    },
+    "OpenTelemetry.Instrumentation.Runtime/1.16.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3mKCZZo32UYn/vcVFxxrWgO+BcDy9EZBdW1rfCzdtK+CGCFIMnf6AY96MrnVnyNK/f3ehq9t6qLec8OTNxgzRw==",
+      "path": "opentelemetry.instrumentation.runtime/1.16.0",
+      "hashPath": "opentelemetry.instrumentation.runtime.1.16.0.nupkg.sha512"
     },
     "Serilog/4.3.0": {
       "type": "package",
@@ -3913,19 +4235,26 @@
       "path": "swashbuckle.aspnetcore/7.3.2",
       "hashPath": "swashbuckle.aspnetcore.7.3.2.nupkg.sha512"
     },
-    "Swashbuckle.AspNetCore.Swagger/7.3.2": {
+    "Swashbuckle.AspNetCore.Annotations/10.2.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-39Z2N3cLHDcDinu2IW5IaQO9wGPKTbc+vKbjIT/6gN3jFYypWY5U3O8i7Y9rmYDgxkm6niICnkcFZ3hEvikIHA==",
-      "path": "swashbuckle.aspnetcore.swagger/7.3.2",
-      "hashPath": "swashbuckle.aspnetcore.swagger.7.3.2.nupkg.sha512"
+      "sha512": "sha512-plbv/9BrcOQfCop5avxdMzp9Qw3jRPdCDaCkwIAYmEcjPUhNwUKqIYBPcXfAU4Jw5gVGj1bKTUuwYx9M43hPPg==",
+      "path": "swashbuckle.aspnetcore.annotations/10.2.3",
+      "hashPath": "swashbuckle.aspnetcore.annotations.10.2.3.nupkg.sha512"
     },
-    "Swashbuckle.AspNetCore.SwaggerGen/7.3.2": {
+    "Swashbuckle.AspNetCore.Swagger/10.2.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-x5famjpcgazpT/8eEIlpSYSTZDq6ojMARhuJgj6O67Uk+Yb1DdDM5yikdL7GK1pMk5rYBETUCRWYP6rp+vHnlA==",
-      "path": "swashbuckle.aspnetcore.swaggergen/7.3.2",
-      "hashPath": "swashbuckle.aspnetcore.swaggergen.7.3.2.nupkg.sha512"
+      "sha512": "sha512-1jUUs3WQnrS0FUtaZPLSy1yYMEwS1zlvDmvQ2/eldPHUANX0LJSLVZecCMgSMdeGiRqeaRrIXLtSz++TCiTMww==",
+      "path": "swashbuckle.aspnetcore.swagger/10.2.3",
+      "hashPath": "swashbuckle.aspnetcore.swagger.10.2.3.nupkg.sha512"
+    },
+    "Swashbuckle.AspNetCore.SwaggerGen/10.2.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-y7t4coDRAeFYChmvlMRiH2OjbiRrm9AVIDgt17fQfs3x9PVAI5PiwWYOhg+4F13R4Q36WDc9lqfoOnNa3tNbGg==",
+      "path": "swashbuckle.aspnetcore.swaggergen/10.2.3",
+      "hashPath": "swashbuckle.aspnetcore.swaggergen.10.2.3.nupkg.sha512"
     },
     "Swashbuckle.AspNetCore.SwaggerUI/7.3.2": {
       "type": "package",
