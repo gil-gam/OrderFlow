@@ -32,7 +32,7 @@ public sealed class CustomersControllerTests : IAsyncLifetime
     public async Task Create_ShouldReturn201_WithCustomer()
     {
         var request = new CreateCustomerRequestDto("John Doe", "john@email.com", null);
-        var response = await _client.PostAsJsonAsync("/api/customers", request);
+        var response = await _client.PostAsJsonAsync("/api/1.0/customers", request);
         response.StatusCode.Should().Be(HttpStatusCode.Created);
         var customer = await response.Content.ReadFromJsonAsync<CustomerDto>();
         customer.Should().NotBeNull();
@@ -43,10 +43,11 @@ public sealed class CustomersControllerTests : IAsyncLifetime
     [Fact]
     public async Task GetById_ExistingCustomer_ShouldReturn200()
     {
-        var create = await _client.PostAsJsonAsync("/api/customers",
+        var create = await _client.PostAsJsonAsync("/api/1.0/customers",
             new CreateCustomerRequestDto("Jane Doe", "jane@email.com", null));
+        create.StatusCode.Should().Be(HttpStatusCode.Created);
         var created = await create.Content.ReadFromJsonAsync<CustomerDto>();
-        var response = await _client.GetAsync($"/api/customers/{created!.Id}");
+        var response = await _client.GetAsync($"/api/1.0/customers/{created!.Id}");
         response.StatusCode.Should().Be(HttpStatusCode.OK);
         var customer = await response.Content.ReadFromJsonAsync<CustomerDto>();
         customer!.Name.Should().Be("Jane Doe");
@@ -55,7 +56,7 @@ public sealed class CustomersControllerTests : IAsyncLifetime
     [Fact]
     public async Task GetById_NonExistent_ShouldReturn404()
     {
-        var response = await _client.GetAsync($"/api/customers/{Guid.NewGuid()}");
+        var response = await _client.GetAsync($"/api/1.0/customers/{Guid.NewGuid()}");
         response.StatusCode.Should().Be(HttpStatusCode.NotFound);
     }
 
@@ -63,13 +64,15 @@ public sealed class CustomersControllerTests : IAsyncLifetime
     public async Task GetList_ShouldReturnAllCustomers()
     {
         TestAuthHandler.CurrentUserId = Guid.NewGuid().ToString();
-        await _client.PostAsJsonAsync("/api/customers", new CreateCustomerRequestDto("A", "a@email.com", null));
+        var post1 = await _client.PostAsJsonAsync("/api/1.0/customers", new CreateCustomerRequestDto("A", "a@email.com", null));
+        post1.StatusCode.Should().Be(HttpStatusCode.Created);
 
         TestAuthHandler.CurrentUserId = Guid.NewGuid().ToString();
-        await _client.PostAsJsonAsync("/api/customers", new CreateCustomerRequestDto("B", "b@email.com", null));
+        var post2 = await _client.PostAsJsonAsync("/api/1.0/customers", new CreateCustomerRequestDto("B", "b@email.com", null));
+        post2.StatusCode.Should().Be(HttpStatusCode.Created);
 
         TestAuthHandler.CurrentUserId = Guid.NewGuid().ToString();
-        var response = await _client.GetAsync("/api/customers");
+        var response = await _client.GetAsync("/api/1.0/customers");
         response.StatusCode.Should().Be(HttpStatusCode.OK);
         var customers = await response.Content.ReadFromJsonAsync<List<CustomerDto>>();
         customers.Should().HaveCount(2);
@@ -78,10 +81,11 @@ public sealed class CustomersControllerTests : IAsyncLifetime
     [Fact]
     public async Task Update_ShouldReturn200_WithUpdatedCustomer()
     {
-        var create = await _client.PostAsJsonAsync("/api/customers",
+        var create = await _client.PostAsJsonAsync("/api/1.0/customers",
             new CreateCustomerRequestDto("Old Name", "old@email.com", null));
+        create.StatusCode.Should().Be(HttpStatusCode.Created);
         var created = await create.Content.ReadFromJsonAsync<CustomerDto>();
-        var response = await _client.PutAsJsonAsync($"/api/customers/{created!.Id}",
+        var response = await _client.PutAsJsonAsync($"/api/1.0/customers/{created!.Id}",
             new { Id = created!.Id, Name = "New Name", Email = "new@email.com", Phone = (string?)null });
         response.StatusCode.Should().Be(HttpStatusCode.OK);
         var customer = await response.Content.ReadFromJsonAsync<CustomerDto>();
@@ -92,12 +96,13 @@ public sealed class CustomersControllerTests : IAsyncLifetime
     [Fact]
     public async Task Delete_ShouldReturn204()
     {
-        var create = await _client.PostAsJsonAsync("/api/customers",
+        var create = await _client.PostAsJsonAsync("/api/1.0/customers",
             new CreateCustomerRequestDto("Delete Me", "delete@email.com", null));
+        create.StatusCode.Should().Be(HttpStatusCode.Created);
         var created = await create.Content.ReadFromJsonAsync<CustomerDto>();
-        var response = await _client.DeleteAsync($"/api/customers/{created!.Id}");
+        var response = await _client.DeleteAsync($"/api/1.0/customers/{created!.Id}");
         response.StatusCode.Should().Be(HttpStatusCode.NoContent);
-        var getResponse = await _client.GetAsync($"/api/customers/{created.Id}");
+        var getResponse = await _client.GetAsync($"/api/1.0/customers/{created.Id}");
         getResponse.StatusCode.Should().Be(HttpStatusCode.NotFound);
     }
 }

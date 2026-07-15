@@ -36,14 +36,14 @@ public sealed class ProductsControllerTests : IAsyncLifetime
     {
         TestAuthHandler.CurrentUserId = "products-test-user";
 
-        var catResponse = await _client.PostAsJsonAsync("/api/categories",
+        var catResponse = await _client.PostAsJsonAsync("/api/1.0/categories",
             new CreateCategoryRequestDto("Test Category", "For product tests"));
         catResponse.StatusCode.Should().Be(HttpStatusCode.Created);
         var category = await catResponse.Content.ReadFromJsonAsync<CategoryDto>();
         category!.Id.Should().NotBe(Guid.Empty);
 
         var command = new CreateProductCommand("TV", "Smart TV 50 polegadas", 2999.99m, "BRL", category.Id);
-        var response = await _client.PostAsJsonAsync("/api/products", command);
+        var response = await _client.PostAsJsonAsync("/api/1.0/products", command);
         response.StatusCode.Should().Be(HttpStatusCode.Created);
         var product = await response.Content.ReadFromJsonAsync<ProductDto>();
         product!.Name.Should().Be("TV");
@@ -55,16 +55,17 @@ public sealed class ProductsControllerTests : IAsyncLifetime
     {
         TestAuthHandler.CurrentUserId = "products-test-user";
 
-        var catResponse = await _client.PostAsJsonAsync("/api/categories",
+        var catResponse = await _client.PostAsJsonAsync("/api/1.0/categories",
             new CreateCategoryRequestDto("Test Category", "For product tests"));
         catResponse.StatusCode.Should().Be(HttpStatusCode.Created);
         var category = await catResponse.Content.ReadFromJsonAsync<CategoryDto>();
 
-        var prodResponse = await _client.PostAsJsonAsync("/api/products",
+        var prodResponse = await _client.PostAsJsonAsync("/api/1.0/products",
             new CreateProductCommand("Notebook", "Laptop", 5000, "BRL", category!.Id));
         prodResponse.StatusCode.Should().Be(HttpStatusCode.Created);
 
-        var response = await _client.GetAsync($"/api/products?categoryId={category.Id}");
+        var response = await _client.GetAsync($"/api/1.0/products?categoryId={category.Id}");
+        response.StatusCode.Should().Be(HttpStatusCode.OK);
         var products = await response.Content.ReadFromJsonAsync<List<ProductDto>>();
         products.Should().Contain(p => p.Name == "Notebook");
     }
@@ -74,17 +75,17 @@ public sealed class ProductsControllerTests : IAsyncLifetime
     {
         TestAuthHandler.CurrentUserId = "products-test-user";
 
-        var catResponse = await _client.PostAsJsonAsync("/api/categories",
+        var catResponse = await _client.PostAsJsonAsync("/api/1.0/categories",
             new CreateCategoryRequestDto("Test Category", "For product tests"));
         catResponse.StatusCode.Should().Be(HttpStatusCode.Created);
         var category = await catResponse.Content.ReadFromJsonAsync<CategoryDto>();
 
-        var prodResponse = await _client.PostAsJsonAsync("/api/products",
+        var prodResponse = await _client.PostAsJsonAsync("/api/1.0/products",
             new CreateProductCommand("Old Product", "Old desc", 100, "USD", category!.Id));
         prodResponse.StatusCode.Should().Be(HttpStatusCode.Created);
         var product = await prodResponse.Content.ReadFromJsonAsync<ProductDto>();
 
-        var response = await _client.PutAsJsonAsync($"/api/products/{product!.Id}",
+        var response = await _client.PutAsJsonAsync($"/api/1.0/products/{product!.Id}",
             new { Id = product.Id, Name = "New Product", Description = "New desc", UnitPrice = 200m, Currency = "USD", CategoryId = category.Id });
         response.StatusCode.Should().Be(HttpStatusCode.OK);
     }
@@ -94,17 +95,17 @@ public sealed class ProductsControllerTests : IAsyncLifetime
     {
         TestAuthHandler.CurrentUserId = "products-test-user";
 
-        var catResponse = await _client.PostAsJsonAsync("/api/categories",
+        var catResponse = await _client.PostAsJsonAsync("/api/1.0/categories",
             new CreateCategoryRequestDto("Test Category", "For product tests"));
         catResponse.StatusCode.Should().Be(HttpStatusCode.Created);
         var category = await catResponse.Content.ReadFromJsonAsync<CategoryDto>();
 
-        var prodResponse = await _client.PostAsJsonAsync("/api/products",
+        var prodResponse = await _client.PostAsJsonAsync("/api/1.0/products",
             new CreateProductCommand("Temp", "Temp", 50, "USD", category!.Id));
         prodResponse.StatusCode.Should().Be(HttpStatusCode.Created);
         var product = await prodResponse.Content.ReadFromJsonAsync<ProductDto>();
 
-        var response = await _client.DeleteAsync($"/api/products/{product!.Id}");
+        var response = await _client.DeleteAsync($"/api/1.0/products/{product!.Id}");
         response.StatusCode.Should().Be(HttpStatusCode.NoContent);
     }
 }

@@ -33,8 +33,9 @@ public sealed class OrdersControllerTests : IAsyncLifetime
         TestAuthHandler.CurrentUserId = "orders-test-user";
         await _resetDatabase();
 
-        var customerResponse = await _client.PostAsJsonAsync("/api/customers",
+        var customerResponse = await _client.PostAsJsonAsync("/api/1.0/customers",
             new CreateCustomerRequestDto("Order Tester", "orders@email.com", null));
+        customerResponse.StatusCode.Should().Be(HttpStatusCode.Created);
         var customer = await customerResponse.Content.ReadFromJsonAsync<CustomerDto>();
         _customerId = customer!.Id;
     }
@@ -52,7 +53,7 @@ public sealed class OrdersControllerTests : IAsyncLifetime
                 new(Guid.NewGuid(), "Item 1", 2, 50m, "BRL")
             });
 
-        var response = await _client.PostAsJsonAsync("/api/orders", command);
+        var response = await _client.PostAsJsonAsync("/api/1.0/orders", command);
         response.StatusCode.Should().Be(HttpStatusCode.Created);
     }
 
@@ -66,16 +67,17 @@ public sealed class OrdersControllerTests : IAsyncLifetime
             {
                 new(Guid.NewGuid(), "Item", 1, 100m, "BRL")
             });
-        await _client.PostAsJsonAsync("/api/orders", command);
+        var postResponse = await _client.PostAsJsonAsync("/api/1.0/orders", command);
+        postResponse.StatusCode.Should().Be(HttpStatusCode.Created);
 
-        var response = await _client.GetAsync("/api/orders?pageIndex=1&pageSize=10");
+        var response = await _client.GetAsync("/api/1.0/orders?pageIndex=1&pageSize=10");
         response.StatusCode.Should().Be(HttpStatusCode.OK);
     }
 
     [Fact]
     public async Task Delete_NonExistent_ShouldReturn404()
     {
-        var response = await _client.DeleteAsync($"/api/orders/{Guid.NewGuid()}");
+        var response = await _client.DeleteAsync($"/api/1.0/orders/{Guid.NewGuid()}");
         response.StatusCode.Should().Be(HttpStatusCode.NotFound);
     }
 }

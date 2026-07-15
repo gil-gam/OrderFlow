@@ -79,8 +79,9 @@ builder.Services.AddApiVersioning(options =>
     options.AssumeDefaultVersionWhenUnspecified = true;
     options.ReportApiVersions = true;
     options.ApiVersionReader = Asp.Versioning.ApiVersionReader.Combine(
-        new Asp.Versioning.QueryStringApiVersionReader("api-version"),
-        new Asp.Versioning.HeaderApiVersionReader("X-Api-Version"));
+    new Asp.Versioning.UrlSegmentApiVersionReader(),
+    new Asp.Versioning.QueryStringApiVersionReader("api-version"),
+    new Asp.Versioning.HeaderApiVersionReader("X-Api-Version"));
 })
 .AddApiExplorer(options =>
 {
@@ -249,4 +250,4 @@ public class ReplaceVersionWithExactValueInPathFilter : Swashbuckle.AspNetCore.S
 }
 
 // ── Test Entry Point ──────────────────────────────────────
-public partial class Program { }
+public partial class Program { } 

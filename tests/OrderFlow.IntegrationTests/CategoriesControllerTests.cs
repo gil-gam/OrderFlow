@@ -32,7 +32,7 @@ public sealed class CategoriesControllerTests : IAsyncLifetime
     public async Task Create_ShouldReturn201()
     {
         var request = new CreateCategoryRequestDto("Eletrônicos", "Produtos eletrônicos em geral");
-        var response = await _client.PostAsJsonAsync("/api/categories", request);
+        var response = await _client.PostAsJsonAsync("/api/1.0/categories", request);
         response.StatusCode.Should().Be(HttpStatusCode.Created);
         var category = await response.Content.ReadFromJsonAsync<CategoryDto>();
         category!.Name.Should().Be("Eletrônicos");
@@ -42,10 +42,11 @@ public sealed class CategoriesControllerTests : IAsyncLifetime
     [Fact]
     public async Task GetById_ShouldReturn200()
     {
-        var create = await _client.PostAsJsonAsync("/api/categories",
+        var create = await _client.PostAsJsonAsync("/api/1.0/categories",
             new CreateCategoryRequestDto("Roupas", null));
+        create.StatusCode.Should().Be(HttpStatusCode.Created);
         var created = await create.Content.ReadFromJsonAsync<CategoryDto>();
-        var response = await _client.GetAsync($"/api/categories/{created!.Id}");
+        var response = await _client.GetAsync($"/api/1.0/categories/{created!.Id}");
         response.StatusCode.Should().Be(HttpStatusCode.OK);
         var category = await response.Content.ReadFromJsonAsync<CategoryDto>();
         category!.Name.Should().Be("Roupas");
@@ -54,9 +55,12 @@ public sealed class CategoriesControllerTests : IAsyncLifetime
     [Fact]
     public async Task GetList_ShouldReturnAll()
     {
-        await _client.PostAsJsonAsync("/api/categories", new CreateCategoryRequestDto("Cat A", null));
-        await _client.PostAsJsonAsync("/api/categories", new CreateCategoryRequestDto("Cat B", null));
-        var response = await _client.GetAsync("/api/categories");
+        var post1 = await _client.PostAsJsonAsync("/api/1.0/categories", new CreateCategoryRequestDto("Cat A", null));
+        post1.StatusCode.Should().Be(HttpStatusCode.Created);
+        var post2 = await _client.PostAsJsonAsync("/api/1.0/categories", new CreateCategoryRequestDto("Cat B", null));
+        post2.StatusCode.Should().Be(HttpStatusCode.Created);
+        var response = await _client.GetAsync("/api/1.0/categories");
+        response.StatusCode.Should().Be(HttpStatusCode.OK);
         var categories = await response.Content.ReadFromJsonAsync<List<CategoryDto>>();
         categories.Should().HaveCount(2);
     }
@@ -64,10 +68,11 @@ public sealed class CategoriesControllerTests : IAsyncLifetime
     [Fact]
     public async Task Update_ShouldReturn200()
     {
-        var create = await _client.PostAsJsonAsync("/api/categories",
+        var create = await _client.PostAsJsonAsync("/api/1.0/categories",
             new CreateCategoryRequestDto("Old", "Old description"));
+        create.StatusCode.Should().Be(HttpStatusCode.Created);
         var created = await create.Content.ReadFromJsonAsync<CategoryDto>();
-        var response = await _client.PutAsJsonAsync($"/api/categories/{created!.Id}",
+        var response = await _client.PutAsJsonAsync($"/api/1.0/categories/{created!.Id}",
             new { Id = created!.Id, Name = "New", Description = "New description" });
         response.StatusCode.Should().Be(HttpStatusCode.OK);
         var category = await response.Content.ReadFromJsonAsync<CategoryDto>();
@@ -77,10 +82,11 @@ public sealed class CategoriesControllerTests : IAsyncLifetime
     [Fact]
     public async Task Delete_ShouldReturn204()
     {
-        var create = await _client.PostAsJsonAsync("/api/categories",
+        var create = await _client.PostAsJsonAsync("/api/1.0/categories",
             new CreateCategoryRequestDto("Temp", null));
+        create.StatusCode.Should().Be(HttpStatusCode.Created);
         var created = await create.Content.ReadFromJsonAsync<CategoryDto>();
-        var response = await _client.DeleteAsync($"/api/categories/{created!.Id}");
+        var response = await _client.DeleteAsync($"/api/1.0/categories/{created!.Id}");
         response.StatusCode.Should().Be(HttpStatusCode.NoContent);
     }
 }

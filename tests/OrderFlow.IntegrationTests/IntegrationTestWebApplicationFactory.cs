@@ -30,7 +30,6 @@ public class IntegrationTestWebApplicationFactory : WebApplicationFactory<Progra
             services.AddDbContext<OrderFlowDbContext>(options =>
                 options.UseNpgsql(_container.GetConnectionString()));
 
-            // Add fake authentication handler for testing
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = TestAuthHandler.SchemeName;
@@ -42,11 +41,6 @@ public class IntegrationTestWebApplicationFactory : WebApplicationFactory<Progra
             services.AddAuthorization(options =>
             {
                 options.FallbackPolicy = null;
-            });
-
-            services.AddAuthorization(options =>
-            {
-                options.FallbackPolicy = null; // make sure the fake scheme is used
             });
         });
     }
