@@ -401,10 +401,7 @@ UnitTests/      # 108 unit tests
 IntegrationTests/ # 18 integration tests
 ├── docker-compose.yml
 ├── Dockerfile
-├── .runsettings
-└── Directory.
-
-Build.props
+└── .runsettings
 ```
 
 ## License

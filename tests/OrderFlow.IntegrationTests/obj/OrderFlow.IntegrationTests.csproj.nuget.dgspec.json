@@ -44,9 +44,6 @@
           }
         },
         "warningProperties": {
-          "noWarn": [
-            "NU1903"
-          ],
           "warnAsError": [
             "NU1605"
           ]
@@ -608,9 +605,6 @@
           }
         },
         "warningProperties": {
-          "noWarn": [
-            "NU1903"
-          ],
           "warnAsError": [
             "NU1605"
           ]
@@ -983,9 +977,6 @@
           }
         },
         "warningProperties": {
-          "noWarn": [
-            "NU1903"
-          ],
           "warnAsError": [
             "NU1605"
           ]
@@ -1338,9 +1329,6 @@
           }
         },
         "warningProperties": {
-          "noWarn": [
-            "NU1903"
-          ],
           "warnAsError": [
             "NU1605"
           ]
@@ -1363,27 +1351,31 @@
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[10.0.0, )"
+              "version": "[10.0.10, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[10.0.0, )"
+              "version": "[10.0.10, )"
             },
             "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
-              "version": "[10.0.0, )"
+              "version": "[10.0.10, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[10.0.0, )"
+              "version": "[10.0.10, )"
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
-              "version": "[10.0.0, )"
+              "version": "[10.0.3, )"
+            },
+            "System.Security.Cryptography.Xml": {
+              "target": "Package",
+              "version": "[10.0.10, )"
             }
           },
           "imports": [
@@ -1723,9 +1715,6 @@
           }
         },
         "warningProperties": {
-          "noWarn": [
-            "NU1903"
-          ],
           "warnAsError": [
             "NU1605"
           ]
